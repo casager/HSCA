@@ -1,0 +1,3 @@
+[submodule "HSCA_S24"]
+	path = HSCA_S24
+	url = https://github.com/stineje/HSCA_S24.git
