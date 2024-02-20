@@ -11,10 +11,10 @@ z2
 cModel Technology
 Z0 dC:/Users/Carson/Documents/HSCA/HW1/hw1_1
 T_opt
-!s110 1706330048
-VXbFSnk2o=:G:dF7END7^m1
+!s110 1706759099
+VQOoR_o_GYRVCQPJ[gQHh41
 04 8 4 work stimulus fast 0
-=1-2cf05ddf1647-65b487bf-32b-7630
+=1-2cf05ddf1647-65bb13ba-321-4f88
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
@@ -22,7 +22,7 @@ n@_opt
 OL;O;2021.3;73
 vhw1_1
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1706330047
+Z3 !s110 1706759098
 !i10b 1
 !s100 YN1m?Q`PcLGcUICWU2<CE1
 IN7hBmfUiOGi<zoSCSWC0l2
@@ -38,7 +38,7 @@ Z5 OL;L;2021.3;73
 r1
 !s85 0
 31
-Z6 !s108 1706330047.000000
+Z6 !s108 1706759098.000000
 Z7 !s107 tb_hw1_1.sv|hw1_1.sv|
 Z8 !s90 -reportprogress|300|hw1_1.sv|tb_hw1_1.sv|
 !i113 0
@@ -52,7 +52,7 @@ R3
 Ind]bg7h0eRgYMMC52C;G=1
 S1
 R0
-w1706327062
+w1706330158
 8tb_hw1_1.sv
 Ftb_hw1_1.sv
 !i122 0

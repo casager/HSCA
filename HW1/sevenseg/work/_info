@@ -11,18 +11,18 @@ z2
 cModel Technology
 Z0 dC:/Users/Carson/Documents/HSCA/HW1/sevenseg
 T_opt
-Z1 !s110 1706330685
-VLe8cSi9Tmn2m5366Wn4J<3
+!s110 1706759331
+Vc5OIK[50;i[AbYKC]WYA40
 04 2 4 work tb fast 0
-=1-2cf05ddf1647-65b48a3d-265-75ec
+=1-2cf05ddf1647-65bb14a3-2e-77f0
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
-Z2 tCvgOpt 0
+Z1 tCvgOpt 0
 n@_opt
 OL;O;2021.3;73
 vsevenseg
-Z3 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-R1
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1706759330
 !i10b 1
 !s100 JmVLG37oI=EPYEz2gX2im0
 IX=jU_@@_eHX68m0oOzIbl3
@@ -38,15 +38,15 @@ Z5 OL;L;2021.3;73
 r1
 !s85 0
 31
-Z6 !s108 1706330685.000000
+Z6 !s108 1706759330.000000
 Z7 !s107 tb_sevenseg.sv|sevenseg.sv|
 Z8 !s90 -reportprogress|300|sevenseg.sv|tb_sevenseg.sv|
 !i113 0
 Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R2
-vtb
-R3
 R1
+vtb
+R2
+R3
 !i10b 1
 !s100 RI3KcANP=1@n<Jg8DOz^z1
 IXz[V7<WTZk[gUlclgimR90
@@ -67,4 +67,4 @@ R7
 R8
 !i113 0
 R9
-R2
+R1

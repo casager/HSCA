@@ -1,0 +1,70 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.3 2021.07, Jul 13 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Carson/Documents/HSCA/HW1/gray_input
+T_opt
+Z1 !s110 1706759833
+V0G]h_o6?B^F9Ojl0EUikW1
+04 8 4 work stimulus fast 0
+=1-2cf05ddf1647-65bb1699-174-44a0
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z2 tCvgOpt 0
+n@_opt
+OL;O;2021.3;73
+vgray_input
+Z3 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R1
+!i10b 1
+!s100 =lKJFZNO`09KgX?Q0zEn]3
+I@W]eoPEchO:a4iPzNe[2F3
+S1
+R0
+w1706758000
+8gray_input.sv
+Fgray_input.sv
+!i122 0
+L0 1 66
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2021.3;73
+r1
+!s85 0
+31
+Z6 !s108 1706759833.000000
+Z7 !s107 gray_input_tb.sv|gray_input.sv|
+Z8 !s90 -reportprogress|300|gray_input.sv|gray_input_tb.sv|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vstimulus
+R3
+R1
+!i10b 1
+!s100 bAP[U4<ANY[2X2naKJ>>m0
+I4OB1^djYMGaAl3_2AIZiz1
+S1
+R0
+w1706758002
+8gray_input_tb.sv
+Fgray_input_tb.sv
+!i122 0
+L0 1 54
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R2
