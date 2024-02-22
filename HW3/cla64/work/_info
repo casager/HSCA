@@ -1,0 +1,118 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.1 2021.01, Jan 19 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/shotc/OneDrive/Documents/HSCA/HW3/cla64
+T_opt
+!s110 1708548976
+VFooboTdk6KVJZfJf08if03
+04 8 4 work stimulus fast 0
+=1-287fcf25c015-65d6636f-392-5bfc
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.1;73
+vbclg4
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1708548975
+!i10b 1
+!s100 mRnna^UN6RVNKDA0DV`hN0
+IKdehZ^3;=jdRZ7hhcPAR51
+S1
+R0
+Z4 w1708548968
+Z5 8cla64.sv
+Z6 Fcla64.sv
+!i122 0
+L0 135 19
+Z7 VDg1SIo80bB@j0V0VzS_@n1
+Z8 OL;L;2021.1;73
+r1
+!s85 0
+31
+Z9 !s108 1708548975.000000
+Z10 !s107 tb_cla64.sv|cla64.sv|
+Z11 !s90 cla64.sv|tb_cla64.sv|
+!i113 0
+Z12 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vcla64
+R2
+R3
+!i10b 1
+!s100 PCYRV6UDkDzc91V?5M>G=1
+I?h=_Uim;1:Dj^MmmeFJUW2
+S1
+R0
+R4
+R5
+R6
+!i122 0
+L0 1 121
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R1
+vrfa
+R2
+R3
+!i10b 1
+!s100 @:WBf<KCC2F@dD^:`:45h3
+I1>BXYh:mllCMb5>iDE7oX1
+S1
+R0
+R4
+R5
+R6
+!i122 0
+L0 123 11
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R1
+vstimulus
+R2
+R3
+!i10b 1
+!s100 ?EUdHG1TiC21_eSWl4GHI3
+I`PFNoXGQPYBdFSg:<n=Jh1
+S1
+R0
+w1708547165
+8tb_cla64.sv
+Ftb_cla64.sv
+!i122 0
+L0 1 55
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R1
