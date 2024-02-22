@@ -115,7 +115,7 @@ rfa rfa63(a[63], b[63], c63, sum[63], g[63], p[63]);
 bclg4 bclg15(c60, g[63:60], p[63:60], gout[15], pout[15], c61, c62, c63);
 bclg4 bclgLevel2_3(c48, gout[15:12], pout[15:12], gout2[3], pout2[3], c52, c56, c60);
 
-bclg4 bclgLevel3_0(cin, gout2[3:0], pout2[3:0], gout3, pout3, c16, c32, c48);
+bclg4 bclgLevel3_0(cin, gout2[3:0], pout2[3:0], gout3, pout3, c16, c32, c48); //don't need gout3/pout3 for final level (9 gates instead)
 
 
 endmodule // cla64
@@ -143,8 +143,8 @@ module bclg4 (cin, g, p, gout, pout, c[1], c[2], c[3]);
 
     //assign c[0] = cin;
     assign c[1] = g[0] | (p[0] & cin);
-    assign c[2] = g[1] | (p[1] & g[0]) | (p[1] & p[0] & c[0]);
-    assign c[3] = g[2] | (p[2] & g[1]) | (p[2] & p[1] & g[0]) | (p[2] & p[1] & p[0] & c[0]);
+    assign c[2] = g[1] | (p[1] & g[0]) | (p[1] & p[0] & cin);
+    assign c[3] = g[2] | (p[2] & g[1]) | (p[2] & p[1] & g[0]) | (p[2] & p[1] & p[0] & cin);
     //assign cout = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]) | (p[3] & p[2] & p[1] & p[0] & c[0]);
 
     assign gout =  g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & g[0]);
