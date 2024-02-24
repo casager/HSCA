@@ -43,7 +43,7 @@ module stimulus ();
     //  #10  a = 64'hA0A0A0A0A0A0A0A0; 
     //  #0   b = 64'h0A0A0A0A0A0A0A0A;
      #5   cin = 1'b0;
-     #0   a = 64'h000000000000FFFF; 
+     #0   a = 64'h0FFFFFFFFFFFFFFF; 
      #0   b = 64'h0000000000000001;
 
 
