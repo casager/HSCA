@@ -1,0 +1,63 @@
+module CSAM (Z, X, Y);
+
+        input logic [3:0] Y;
+        input logic [3:0] X;
+        output logic [7:0] Z;
+
+
+        logic [3:0] P0;
+        logic [3:0] carry1;
+        logic [3:0] sum1;
+        logic [3:0] P1;
+        logic [3:0] carry2;
+        logic [3:0] sum2;
+        logic [3:0] P2;
+        logic [3:0] carry3;
+        logic [3:0] sum3;
+        logic [3:0] P3;
+        logic [3:0] carry4;
+        logic [3:0] sum4;
+        logic [6:0] carry5;
+
+
+        // generate the partial products.
+        and pp1(P0[3], X[3], Y[0]);
+        and pp2(P0[2], X[2], Y[0]);
+        and pp3(P0[1], X[1], Y[0]);
+        and pp4(P0[0], X[0], Y[0]);
+        and pp5(sum1[3], X[3], Y[1]);
+        and pp6(P1[2], X[2], Y[1]);
+        and pp7(P1[1], X[1], Y[1]);
+        and pp8(P1[0], X[0], Y[1]);
+        and pp9(sum2[3], X[3], Y[2]);
+        and pp10(P2[2], X[2], Y[2]);
+        and pp11(P2[1], X[1], Y[2]);
+        and pp12(P2[0], X[0], Y[2]);
+        and pp13(sum3[3], X[3], Y[3]);
+        and pp14(P3[2], X[2], Y[3]);
+        and pp15(P3[1], X[1], Y[3]);
+        and pp16(P3[0], X[0], Y[3]);
+
+        // Array Reduction
+        half_adder  HA1(carry1[2],sum1[2],P1[2],P0[3]);
+        half_adder  HA2(carry1[1],sum1[1],P1[1],P0[2]);
+        half_adder  HA3(carry1[0],sum1[0],P1[0],P0[1]);
+        full_adder  FA1(carry2[2],sum2[2],P2[2],sum1[3],carry1[2]);
+        full_adder  FA2(carry2[1],sum2[1],P2[1],sum1[2],carry1[1]);
+        full_adder  FA3(carry2[0],sum2[0],P2[0],sum1[1],carry1[0]);
+        full_adder  FA4(carry3[2],sum3[2],P3[2],sum2[3],carry2[2]);
+        full_adder  FA5(carry3[1],sum3[1],P3[1],sum2[2],carry2[1]);
+        full_adder  FA6(carry3[0],sum3[0],P3[0],sum2[1],carry2[0]);
+
+        // Generate lower product bits YBITS
+        buf b1(Z[0], P0[0]);
+        assign Z[1] = sum1[0];
+        assign Z[2] = sum2[0];
+        assign Z[3] = sum3[0];
+
+        // Final Carry Propagate Addition
+        half_adder CPA1(carry4[0],Z[4],carry3[0],sum3[1]);
+        full_adder CPA2(carry4[1],Z[5],carry3[1],carry4[0],sum3[2]);
+        full_adder CPA3(Z[7],Z[6],carry3[2],carry4[1],sum3[3]);
+
+endmodule // end CSAM
