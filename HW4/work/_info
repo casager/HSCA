@@ -1,0 +1,119 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.1 2021.01, Jan 19 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/shotc/OneDrive/Documents/HSCA/HW4
+T_opt
+!s110 1710215528
+VHK?MK<[Ma39ib[HI=;bOQ2
+04 8 4 work stimulus fast 0
+=1-287fcf25c015-65efd168-114-79e8
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.1;73
+vCSAM16
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1710215527
+!i10b 1
+!s100 9`g[a5E7z9cbMk>6PNF<:2
+Ia@QgF6^cn_99e`HjacBQ42
+S1
+R0
+Z4 w1710215209
+Z5 8CSAM16.sv
+Z6 FCSAM16.sv
+!i122 0
+L0 1 579
+Z7 VDg1SIo80bB@j0V0VzS_@n1
+Z8 OL;L;2021.1;73
+r1
+!s85 0
+31
+Z9 !s108 1710215527.000000
+Z10 !s107 tb_CSAM.sv|CSAM16.sv|
+Z11 !s90 CSAM16.sv|tb_CSAM.sv|
+!i113 0
+Z12 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@c@s@a@m16
+vfull_adder
+R2
+R3
+!i10b 1
+!s100 mDg]4<;<`fnMc8FmVfYgX1
+I<cnidR4c0H;Vb=ne^FC]30
+S1
+R0
+R4
+R5
+R6
+!i122 0
+L0 592 11
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R1
+vhalf_adder
+R2
+R3
+!i10b 1
+!s100 YBJf7EHmYR<QOn8CY`Nee3
+IL[BM5Tl=0P0@k:Z9PjiNg1
+S1
+R0
+R4
+R5
+R6
+!i122 0
+L0 581 9
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R1
+vstimulus
+R2
+R3
+!i10b 1
+!s100 K`CT5hFHOcOVeh>ND<88H1
+Iz^8h`oiNl:S4IPMoW3K]02
+S1
+R0
+w1710215513
+8tb_CSAM.sv
+Ftb_CSAM.sv
+!i122 0
+L0 2 69
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R1
