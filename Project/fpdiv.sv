@@ -1,8 +1,8 @@
 module fpdiv(num, denom, clk, reset, en_a, en_b, en_c, out);
 
-    input logic [25:0] num, denom;
+    input logic [26:0] num, denom;
 
-    output logic [22:0] out; 
+    output logic [23:0] out; 
 
     logic [26:0] ia_out, rega_out, regb_out, regc_out, mux2_out, mux4_out, oc_out
     logic [53:0] mul_out
@@ -35,6 +35,6 @@ module fpdiv(num, denom, clk, reset, en_a, en_b, en_c, out);
     flopenr #(27) regb(clk, reset, en_b, mul_out[53:27], regb_out);
     flopenr #(27) regc(clk, reset, en_c, oc_out[53:27], regc_out);
     //assign q = rega_out;
-    //assign out = mul_out[51:29]; //will need an output of 23 bits but not until end
+    //assign out = mul_out[51:29]; //will need an output of 23 bits (fraction) but not until end
 
 endmodule //fpdiv
