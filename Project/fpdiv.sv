@@ -1,6 +1,6 @@
 module fpdiv(num, denom, clk, reset, en_a, en_b, en_c, out);
 
-    input logic [26:0] num, denom;
+    input logic [26:0] num, denom; //input and output as 23 bit [22:0], add int and guard bits for 27
 
     output logic [23:0] out; 
 
@@ -17,9 +17,9 @@ module fpdiv(num, denom, clk, reset, en_a, en_b, en_c, out);
     
     //do not need either of these
     //determine ulp for rne (G * (L + R + sticky))
-    assign sticky = |mul_out[20:0];
+    //assign sticky = |mul_out[20:0];
     // assumption is 23 is int bit, 21 is round bit (0.11), and sticky is past that
-    assign ulp = mul_out[22] & (mul_out[23] | mul_out[21] | sticky); 
+    //assign ulp = mul_out[22] & (mul_out[23] | mul_out[21] | sticky); 
 
     //rne ask about this section (dont need, just chopping off bits)
     //adder #(26) add1(mul_out[46:23], {23'h0, ulp}, rne_out);
