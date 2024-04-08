@@ -42,10 +42,12 @@ module CSAM1612 (Z, X, Y);
 	logic [15:0] carry12;
 	logic [15:0] sum12;
 	logic [26:0] carry13;
+	
+	logic temp_27; //added this for invert
 
 
 	// generate the partial products.
-	and pp1(P0[15], X[15], Y[0]);
+	nand pp1(P0[15], X[15], Y[0]); //added nands where needed
 	and pp2(P0[14], X[14], Y[0]);
 	and pp3(P0[13], X[13], Y[0]);
 	and pp4(P0[12], X[12], Y[0]);
@@ -61,7 +63,7 @@ module CSAM1612 (Z, X, Y);
 	and pp14(P0[2], X[2], Y[0]);
 	and pp15(P0[1], X[1], Y[0]);
 	and pp16(P0[0], X[0], Y[0]);
-	and pp17(sum1[15], X[15], Y[1]);
+	nand pp17(sum1[15], X[15], Y[1]);
 	and pp18(P1[14], X[14], Y[1]);
 	and pp19(P1[13], X[13], Y[1]);
 	and pp20(P1[12], X[12], Y[1]);
@@ -77,7 +79,7 @@ module CSAM1612 (Z, X, Y);
 	and pp30(P1[2], X[2], Y[1]);
 	and pp31(P1[1], X[1], Y[1]);
 	and pp32(P1[0], X[0], Y[1]);
-	and pp33(sum2[15], X[15], Y[2]);
+	nand pp33(sum2[15], X[15], Y[2]);
 	and pp34(P2[14], X[14], Y[2]);
 	and pp35(P2[13], X[13], Y[2]);
 	and pp36(P2[12], X[12], Y[2]);
@@ -93,7 +95,7 @@ module CSAM1612 (Z, X, Y);
 	and pp46(P2[2], X[2], Y[2]);
 	and pp47(P2[1], X[1], Y[2]);
 	and pp48(P2[0], X[0], Y[2]);
-	and pp49(sum3[15], X[15], Y[3]);
+	nand pp49(sum3[15], X[15], Y[3]);
 	and pp50(P3[14], X[14], Y[3]);
 	and pp51(P3[13], X[13], Y[3]);
 	and pp52(P3[12], X[12], Y[3]);
@@ -109,7 +111,7 @@ module CSAM1612 (Z, X, Y);
 	and pp62(P3[2], X[2], Y[3]);
 	and pp63(P3[1], X[1], Y[3]);
 	and pp64(P3[0], X[0], Y[3]);
-	and pp65(sum4[15], X[15], Y[4]);
+	nand pp65(sum4[15], X[15], Y[4]);
 	and pp66(P4[14], X[14], Y[4]);
 	and pp67(P4[13], X[13], Y[4]);
 	and pp68(P4[12], X[12], Y[4]);
@@ -125,7 +127,7 @@ module CSAM1612 (Z, X, Y);
 	and pp78(P4[2], X[2], Y[4]);
 	and pp79(P4[1], X[1], Y[4]);
 	and pp80(P4[0], X[0], Y[4]);
-	and pp81(sum5[15], X[15], Y[5]);
+	nand pp81(sum5[15], X[15], Y[5]);
 	and pp82(P5[14], X[14], Y[5]);
 	and pp83(P5[13], X[13], Y[5]);
 	and pp84(P5[12], X[12], Y[5]);
@@ -141,7 +143,7 @@ module CSAM1612 (Z, X, Y);
 	and pp94(P5[2], X[2], Y[5]);
 	and pp95(P5[1], X[1], Y[5]);
 	and pp96(P5[0], X[0], Y[5]);
-	and pp97(sum6[15], X[15], Y[6]);
+	nand pp97(sum6[15], X[15], Y[6]);
 	and pp98(P6[14], X[14], Y[6]);
 	and pp99(P6[13], X[13], Y[6]);
 	and pp100(P6[12], X[12], Y[6]);
@@ -157,7 +159,7 @@ module CSAM1612 (Z, X, Y);
 	and pp110(P6[2], X[2], Y[6]);
 	and pp111(P6[1], X[1], Y[6]);
 	and pp112(P6[0], X[0], Y[6]);
-	and pp113(sum7[15], X[15], Y[7]);
+	nand pp113(sum7[15], X[15], Y[7]);
 	and pp114(P7[14], X[14], Y[7]);
 	and pp115(P7[13], X[13], Y[7]);
 	and pp116(P7[12], X[12], Y[7]);
@@ -173,7 +175,7 @@ module CSAM1612 (Z, X, Y);
 	and pp126(P7[2], X[2], Y[7]);
 	and pp127(P7[1], X[1], Y[7]);
 	and pp128(P7[0], X[0], Y[7]);
-	and pp129(sum8[15], X[15], Y[8]);
+	nand pp129(sum8[15], X[15], Y[8]);
 	and pp130(P8[14], X[14], Y[8]);
 	and pp131(P8[13], X[13], Y[8]);
 	and pp132(P8[12], X[12], Y[8]);
@@ -189,7 +191,7 @@ module CSAM1612 (Z, X, Y);
 	and pp142(P8[2], X[2], Y[8]);
 	and pp143(P8[1], X[1], Y[8]);
 	and pp144(P8[0], X[0], Y[8]);
-	and pp145(sum9[15], X[15], Y[9]);
+	nand pp145(sum9[15], X[15], Y[9]);
 	and pp146(P9[14], X[14], Y[9]);
 	and pp147(P9[13], X[13], Y[9]);
 	and pp148(P9[12], X[12], Y[9]);
@@ -205,7 +207,7 @@ module CSAM1612 (Z, X, Y);
 	and pp158(P9[2], X[2], Y[9]);
 	and pp159(P9[1], X[1], Y[9]);
 	and pp160(P9[0], X[0], Y[9]);
-	and pp161(sum10[15], X[15], Y[10]);
+	nand pp161(sum10[15], X[15], Y[10]);
 	and pp162(P10[14], X[14], Y[10]);
 	and pp163(P10[13], X[13], Y[10]);
 	and pp164(P10[12], X[12], Y[10]);
@@ -222,21 +224,21 @@ module CSAM1612 (Z, X, Y);
 	and pp175(P10[1], X[1], Y[10]);
 	and pp176(P10[0], X[0], Y[10]);
 	and pp177(sum11[15], X[15], Y[11]);
-	and pp178(P11[14], X[14], Y[11]);
-	and pp179(P11[13], X[13], Y[11]);
-	and pp180(P11[12], X[12], Y[11]);
-	and pp181(P11[11], X[11], Y[11]);
-	and pp182(P11[10], X[10], Y[11]);
-	and pp183(P11[9], X[9], Y[11]);
-	and pp184(P11[8], X[8], Y[11]);
-	and pp185(P11[7], X[7], Y[11]);
-	and pp186(P11[6], X[6], Y[11]);
-	and pp187(P11[5], X[5], Y[11]);
-	and pp188(P11[4], X[4], Y[11]);
-	and pp189(P11[3], X[3], Y[11]);
-	and pp190(P11[2], X[2], Y[11]);
-	and pp191(P11[1], X[1], Y[11]);
-	and pp192(P11[0], X[0], Y[11]);
+	nand pp178(P11[14], X[14], Y[11]);
+	nand pp179(P11[13], X[13], Y[11]);
+	nand pp180(P11[12], X[12], Y[11]);
+	nand pp181(P11[11], X[11], Y[11]);
+	nand pp182(P11[10], X[10], Y[11]);
+	nand pp183(P11[9], X[9], Y[11]);
+	nand pp184(P11[8], X[8], Y[11]);
+	nand pp185(P11[7], X[7], Y[11]);
+	nand pp186(P11[6], X[6], Y[11]);
+	nand pp187(P11[5], X[5], Y[11]);
+	nand pp188(P11[4], X[4], Y[11]);
+	nand pp189(P11[3], X[3], Y[11]);
+	nand pp190(P11[2], X[2], Y[11]);
+	nand pp191(P11[1], X[1], Y[11]);
+	nand pp192(P11[0], X[0], Y[11]);
 
 	// Array Reduction
 	half_adder  HA1(carry1[14],sum1[14],P1[14],P0[15]);
@@ -420,7 +422,8 @@ module CSAM1612 (Z, X, Y);
 	assign Z[11] = sum11[0];
 
 	// Final Carry Propagate Addition
-	half_adder CPA1(carry12[0],Z[12],carry11[0],sum11[1]);
+	//half_adder CPA1(carry12[0],Z[12],carry11[0],sum11[1]);
+	full_adder CPA1(carry12[0],Z[12],carry11[0],sum11[1],1'b1); //right corner HA, changed to FA with 1 added
 	full_adder CPA2(carry12[1],Z[13],carry11[1],carry12[0],sum11[2]);
 	full_adder CPA3(carry12[2],Z[14],carry11[2],carry12[1],sum11[3]);
 	full_adder CPA4(carry12[3],Z[15],carry11[3],carry12[2],sum11[4]);
@@ -434,6 +437,31 @@ module CSAM1612 (Z, X, Y);
 	full_adder CPA12(carry12[11],Z[23],carry11[11],carry12[10],sum11[12]);
 	full_adder CPA13(carry12[12],Z[24],carry11[12],carry12[11],sum11[13]);
 	full_adder CPA14(carry12[13],Z[25],carry11[13],carry12[12],sum11[14]);
-	full_adder CPA15(Z[27],Z[26],carry11[14],carry12[13],sum11[15]);
+	full_adder CPA15(temp_27,Z[26],carry11[14],carry12[13],sum11[15]);
+
+	assign Z[27] = ~temp_27; //inverter for last bit
 
 endmodule
+
+module half_adder (Cout, Sum, A, B);
+
+   input logic A,B;
+   output logic Sum,Cout;
+
+   xor xor1(Sum,A,B);
+   and and1(Cout,A,B);
+
+endmodule // ha
+
+
+module full_adder (Cout, Sum, A, B, Cin);
+
+   input logic A,B,Cin;
+   output logic Sum,Cout;
+   wire S1,C1,C2;
+
+   half_adder ha1(C1,S1,A,B);
+   half_adder ha2(C2,Sum,S1,Cin);
+   or or1(Cout,C1,C2);
+
+endmodule // fa
