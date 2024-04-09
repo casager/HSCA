@@ -11,10 +11,10 @@ z2
 cModel Technology
 Z0 dC:/Users/Carson/Documents/HSCA/HW5
 T_opt
-!s110 1712472037
-VRnI1ic5<5>WcbfYcbzVM52
+!s110 1712629134
+V`YD^JYVXLWRD3ORkkN[ni2
 04 8 4 work stimulus fast 0
-=1-2cf05ddf1647-66123fe5-87-4c08
+=1-2cf05ddf1647-6614a58d-3e5-620c
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
@@ -22,25 +22,25 @@ n@_opt
 OL;O;2021.3;73
 vCSAM1612
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1712472036
+Z3 !s110 1712629133
 !i10b 1
-!s100 dTbmEJZ98^63E0V0fJQHe2
-I>S4BQ3A=VYGj:aO>l5UP=0
+!s100 akc0hVV4Lodg2SVJ3U_3:2
+IJD54<>JjV:dha[jNUQSeC0
 S1
 R0
-Z4 w1712472031
+Z4 w1712621953
 Z5 8CSAM1612.sv
 Z6 FCSAM1612.sv
 !i122 0
-L0 1 444
+L0 1 443
 Z7 VDg1SIo80bB@j0V0VzS_@n1
 Z8 OL;L;2021.3;73
 r1
 !s85 0
 31
-Z9 !s108 1712472036.000000
+Z9 !s108 1712629133.000000
 Z10 !s107 tb_CSAM1612.sv|CSAM1612.sv|
-Z11 !s90 CSAM1612.sv|tb_CSAM1612.sv|
+Z11 !s90 -reportprogress|300|CSAM1612.sv|tb_CSAM1612.sv|
 !i113 0
 Z12 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
@@ -49,15 +49,15 @@ vfull_adder
 R2
 R3
 !i10b 1
-!s100 VMTDGNC?WHKk_;i]07_m<0
-I8HzI00eIZFo@V3c<T`iK12
+!s100 Vk7^o_<S7=7N^;cQZ^@c=1
+IL:M`AAmo`^k3a;;07@zQM2
 S1
 R0
 R4
 R5
 R6
 !i122 0
-L0 457 11
+L0 456 11
 R7
 R8
 r1
@@ -73,15 +73,15 @@ vhalf_adder
 R2
 R3
 !i10b 1
-!s100 <QjJh9RPU3QVkU:455cX30
-II;C=k<@gg@YEz8M27DGR[3
+!s100 il79Mz>?5C6R2QAolGga72
+IShlVeB6Tl`BkWPJmn=eYY1
 S1
 R0
 R4
 R5
 R6
 !i122 0
-L0 446 9
+L0 445 9
 R7
 R8
 r1
@@ -97,11 +97,11 @@ vstimulus
 R2
 R3
 !i10b 1
-!s100 3=8GBWYczgC:zYLzU6c2Z0
-IhQlhjYOY]3I^=8aj`[Gmd1
+!s100 <G63E:dA0KFdGT5i=P`=:3
+I@[dB@LjlRIT?kDIRL=JVo0
 S1
 R0
-w1712466469
+w1712622127
 8tb_CSAM1612.sv
 Ftb_CSAM1612.sv
 !i122 0

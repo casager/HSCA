@@ -39,7 +39,7 @@ module stimulus;
    initial
      begin
 	// Number of tests
-	for (j=0; j < 32; j=j+1)
+	for (j=0; j < 256; j=j+1)
 	  begin
 	     // Put vectors before beginning of clk
 	     @(posedge clk)
