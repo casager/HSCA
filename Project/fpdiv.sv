@@ -1,8 +1,8 @@
 module fpdiv(num, denom, clk, reset, en_a, en_b, en_c, out);
 
-    input logic [26:0] num, denom; //input and output as 23 bit [22:0], add int and guard bits for 27
-
-    output logic [23:0] out; 
+    input logic [22:0] input1, input2;
+    logic [26:0] num, denom; //input and output as 23 bit [22:0], add int and guard bits for 27
+    output logic [22:0] out; 
 
     logic [26:0] ia_out, rega_out, regb_out, regc_out, mux2_out, mux4_out, oc_out
     logic [53:0] mul_out
