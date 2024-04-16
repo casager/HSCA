@@ -13,8 +13,10 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, out, tb_rega, tb_regb
     logic [55:0] mul_out, oc_out; //set this to 56 bits as the output will have 2 integers, 26 fractional
 
     //assign ia_out = 24'h60_0000; //can change to "better" guess
-    assign num = {1'b1, inputNum[22:0], 4'h0};
+    assign num = {1'b1, inputNum[22:0], 4'h0}; 
     assign denom = {1'b1, inputDenom[22:0], 4'h0};
+    // assign num = {2'b01, inputNum[22:0], 3'b000}; 
+    // assign denom = {2'b01, inputDenom[22:0], 3'b000};
     assign ia_out = 28'h600_0000; //should represent 0.75
     mux2 #(28) mux2(ia_out, regc_out, sel_mux2, mux2_out);
     mux4 #(28) mux4(num, denom, rega_out, regb_out, sel_mux4, mux4_out);
