@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
   /* Actual quotient */
   Q = N/D;
   printf("N = %1.15lf = ", N);
-  disp_bin(N, 1, iprec_f, stdout);
+  disp_bin(N, 1, iprec_f, stdout); //display in binary?
   printf("\n");
   printf("D = %1.15lf = ", D);
   disp_bin(D, 1, iprec_f, stdout);
@@ -49,11 +49,14 @@ int main(int argc, char* argv[]) {
     N = flr(N*R, prec);
     D = flr(D*R, prec);
     R = flr(2 - D - pow(2.0, -prec), prec);
-    printf("i = %d, N = %lf, R = %lf\n", i, N, R);
+    printf("i = %d, N = %lf, D = %lf, R = %lf\n", i, N, D, R); //modified to incorporate D value
     printf("i = %d, N = ", i);
-    disp_bin(N, 2, iprec, stdout);
+    disp_bin(N, 2, iprec, stdout); //2 bits int, iprec is 26 bits decimal
+    printf(", D = ");
+    disp_bin(D, 2, iprec, stdout);
     printf(", R = ");
     disp_bin(R, 2, iprec, stdout);
+    
     printf("\n");
   }
 
