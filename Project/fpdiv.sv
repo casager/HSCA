@@ -7,11 +7,11 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, out, tb_rega,
 
     output logic [53:0] out; 
     output logic [26:0] tb_rega, tb_regb, tb_regc; //output values of registers during every pass
-    //output logic [26:0] rrem; 
-    output logic [53:0] rrem;
+    output logic [26:0] rrem; 
+    //output logic [53:0] rrem; //what size does this need to be ?
     
-    //logic [26:0] regrem_out;
-    logic [53:0] regrem_out;
+    logic [26:0] regrem_out;
+    //logic [53:0] regrem_out;
 
     logic [26:0] num, denom; //input and output as 23 bit [22:0], 2 int places and guard bits for 28 total
     logic [26:0] ia_out, rega_out, regb_out, regc_out, mux3_out, mux4_out;
@@ -49,12 +49,13 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, out, tb_rega,
     flopenr #(27) regb(clk, reset, en_b, mul_out[52:26], regb_out);
     flopenr #(27) regc(clk, reset, en_b, oc_out[52:26], regc_out);
 
-    //flopenr #(27) reg_rem(clk, reset, en_rem, mul_out[52:26], regrem_out); //should multiply d by q
-    flopenr #(54) reg_rem(clk, reset, en_rem, mul_out, regrem_out);
+    flopenr #(27) reg_rem(clk, reset, en_rem, mul_out[52:26], regrem_out); //should multiply d by q
+    //flopenr #(54) reg_rem(clk, reset, en_rem, mul_out, regrem_out);
     
     //assign rrem = regrem_out - {num, 27'b0000_0000_0000_0000_0000_0000_000}; //subtracting the numerator after multiplication
-    assign rrem = {num, 27'b0000_0000_0000_0000_0000_0000_000} - regrem_out;
-    //assign rrem = regrem_out - num;
+    //assign rrem = {num, 27'b0000_0000_0000_0000_0000_0000_000} - regrem_out;
+
+    assign rrem = regrem_out - num; //radix point is correct form
     //assign rrem = num - regrem_out;
     //assign scaled_rrem = rrem[26:0];
 

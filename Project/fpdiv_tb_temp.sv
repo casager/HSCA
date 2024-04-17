@@ -10,8 +10,8 @@ module stimulus ();
    logic [1:0] sel_mux3;
    logic [26:0] tb_rega, tb_regb, tb_regc;
    //logic [26:0] scaled_rrem;
-   //logic [26:0] rrem;
-   logic [53:0] rrem;
+   logic [26:0] rrem;
+   //logic [53:0] rrem;
    
    integer handle3;
    integer desc3;
@@ -34,7 +34,8 @@ module stimulus ();
 	#500 $finish;		
      end
 
-   always 
+//    always @(negedge clk) //automatically at each 10
+   always
      begin
 	desc3 = handle3;
 	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b", 
@@ -46,11 +47,11 @@ module stimulus ();
 	// #0  reset = 1'b1;
 	// #5 reset = 1'b0;
 
-     // #0  inputNum = 32'b0000_0000_0_000_0000_0000_0000_0000_0000; //first 9 bits for integer/exponent
+     // #0  inputNum = 32'b0000_0000_0_000_0000_0000_0000_0000_0000; //represents N =1 D =1
 	// #0  inputDenom = 32'b0000_0000_0_000_0000_0000_0000_0000_0000;
 
-     #0  inputNum = 32'b0000_0000_0_11010101101100110100000; //first 9 bits for integer/exponent
-	#0  inputDenom = 32'b0000_0000_0_00111100011110111100001;
+     #0  inputNum = 32'b0000_0000_0_10001001011000000010000; //first 9 bits for integer/exponent
+	#0  inputDenom = 32'b0000_0000_0_01000001100000001011001;
 
      #5 sel_mux4 = 2'b00; //iteration 1
      #0 sel_mux3 = 2'b00; //multiply input numerator by IA
@@ -62,16 +63,8 @@ module stimulus ();
 	#0 en_a = 1'b0;
 	#0 en_b = 1'b1;     
      
-     #10 sel_mux4 = 2'b10; //iteration 1
-     #0 sel_mux3 = 2'b01; //now multilpy numbers by what is in C register (nothing there yet)
-	#0 en_a = 1'b1;
-	#0 en_b = 1'b0; 
-
-     #10 sel_mux4 = 2'b11;
-	#0 en_a = 1'b0;
-	#0 en_b = 1'b1; 
-
      #10 sel_mux4 = 2'b10; //iteration 2
+     #0 sel_mux3 = 2'b01; //now multilpy numbers by what is in C register (nothing there yet)
 	#0 en_a = 1'b1;
 	#0 en_b = 1'b0; 
 
@@ -111,7 +104,7 @@ module stimulus ();
 	#0 en_a = 1'b0;
 	#0 en_b = 1'b1;
 
-     #10 sel_mux4 = 2'b01;
+     #10 sel_mux4 = 2'b10;
      #0 sel_mux3 = 2'b10;
 	#0 en_a = 1'b0;
 	#0 en_b = 1'b0;

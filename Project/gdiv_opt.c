@@ -11,6 +11,7 @@
 int main(int argc, char* argv[]) {
   double N, D, R, Q, X, RQ, RD, REM, RREM, prec, prec_f, scale;
   double N1, D1;
+  double R1, R2;
   int num_iter, i, iprec, iprec_f;
   if (argc < 7) {
     fprintf(stderr,"Usage: %s numerator denominator intial-value iterations prec prec_f \n", argv[0]);
@@ -59,6 +60,17 @@ int main(int argc, char* argv[]) {
     
     printf("\n");
   }
+  
+  R1 = flr(D1*N, prec);
+  printf("R1 = %1.15lf\n", R1);
+  disp_bin(R1, 2, iprec, stdout);
+  printf("\n");
+  //R2 = N1 - R1;
+  R2 = R1 - N1; //flipped what is being subtracted
+  printf("R2 = %1.15lf\n", R2);
+  disp_bin(R2, 2, iprec, stdout);
+  printf("\n");
+
 
   /* Actual Answer */
   RQ = flr(Q, prec_f);
@@ -83,7 +95,8 @@ int main(int argc, char* argv[]) {
 
   /* Remainder */
   scale = pow(2.0, prec_f); //scaling the remaider to be much larger than it is (up 23 bits)
-  REM  = scale*(N1 - RD*D1);
+  //REM  = scale*(N1 - RD*D1);
+  REM  = scale*(N*D1 - N1); //flipped what is being subtracted
   RREM = flr(REM, iprec_f);
   printf("Remainder\n");
   printf("RREM = %1.15lf\n", RREM);
