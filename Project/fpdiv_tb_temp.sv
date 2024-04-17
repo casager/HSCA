@@ -5,10 +5,10 @@ module stimulus ();
    logic  clk;
    logic  reset;
    logic  en_a, en_b;
-   logic [27:0] out; //will need to change back to 23 bits
+   logic [26:0] out; //will need to change back to 23 bits
    logic [1:0] sel_mux4;
    logic sel_mux2;
-   logic [27:0] tb_rega, tb_regb, tb_regc;
+   logic [26:0] tb_rega, tb_regb, tb_regc;
    
    integer handle3;
    integer desc3;
@@ -42,8 +42,11 @@ module stimulus ();
      begin
 	// #0  reset = 1'b1;
 	// #5 reset = 1'b0;
-	#0  inputNum = 32'b0000_0000_0110_0000_0010_1011_1011_1010; //first 9 bits for integer/exponent
-	#0  inputDenom = 32'b0000_0000_0100_1001_0001_1110_0001_0001;
+	// #0  inputNum = 32'b0000_0000_0110_0000_0010_1011_1011_1010; //first 9 bits for integer/exponent
+	// #0  inputDenom = 32'b0000_0000_0100_1001_0001_1110_0001_0001;
+
+     #0  inputNum = 32'b0000_0000_0000_0000_0000_0000_0000_0000; //first 9 bits for integer/exponent
+	#0  inputDenom = 32'b0000_0000_0000_0000_0000_0000_0000_0000;
 
      #5 sel_mux4 = 2'b00; //iteration 1
      #0 sel_mux2 = 1'b0; //multiply input numerator by IA
