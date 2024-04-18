@@ -50,8 +50,8 @@ module stimulus ();
      // #0  inputNum = 32'b0000_0000_0_000_0000_0000_0000_0000_0000; //represents N =1 D =1
 	// #0  inputDenom = 32'b0000_0000_0_000_0000_0000_0000_0000_0000;
 
-     #0  inputNum = 32'b0000_0000_0_10001001011000000010000; //first 9 bits for integer/exponent
-	#0  inputDenom = 32'b0000_0000_0_01000001100000001011001;
+     #0  inputNum = 32'b0000_0000_0_10100010011110010001010; //first 9 bits for integer/exponent
+	#0  inputDenom = 32'b0000_0000_0_00111100010010110000101;
 
      #5 sel_mux4 = 2'b00; //iteration 1
      #0 sel_mux3 = 2'b00; //multiply input numerator by IA

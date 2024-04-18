@@ -1,6 +1,6 @@
 # do fpdiv.do
-# Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
-# Start time: 16:25:49 on Apr 17,2024
+# Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
+# Start time: 16:51:04 on Apr 17,2024
 # vlog fpdiv.sv flopenr.sv mux.sv fpdiv_tb_temp.sv 
 # -- Compiling module fpdiv
 # -- Compiling module flopenr
@@ -18,12 +18,12 @@
 # 	mux6
 # 	mux7
 # 	stimulus
-# End time: 16:25:50 on Apr 17,2024, Elapsed time: 0:00:01
+# End time: 16:51:04 on Apr 17,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.stimulus 
-# Start time: 16:25:50 on Apr 17,2024
+# Start time: 16:51:04 on Apr 17,2024
 # ** Note: (vsim-3812) Design is being optimized...
-# //  ModelSim SE-64 2021.1 Jan 19 2021
+# //  ModelSim SE-64 2021.3 Jul 13 2021
 # //
 # //  Copyright 1991-2021 Mentor Graphics Corporation
 # //  All Rights Reserved.
@@ -52,5 +52,5 @@
 # configure wave not supported in batch mode
 # ** Note: $finish    : fpdiv_tb_temp.sv(34)
 #    Time: 500 ns  Iteration: 0  Instance: /stimulus
-# End time: 16:25:51 on Apr 17,2024, Elapsed time: 0:00:01
+# End time: 16:51:06 on Apr 17,2024, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
