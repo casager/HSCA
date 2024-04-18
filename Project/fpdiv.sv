@@ -1,7 +1,7 @@
-module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem);
+module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem);
 
     input logic [31:0] inputNum, inputDenom;
-    input logic clk, reset, en_a, en_b, en_rem; //enable c not needed since en_b operates at same time
+    input logic clk, reset, en_a, en_b, en_rem, rm; //enable c not needed since en_b operates at same time
     input logic [1:0] sel_mux3;
     input logic [1:0] sel_mux4;
 
@@ -16,6 +16,14 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, out, tb_rega,
     logic [26:0] num, denom; //input and output as 23 bit [22:0], 2 int places and guard bits for 28 total
     logic [26:0] ia_out, rega_out, regb_out, regc_out, mux3_out, mux4_out;
     logic [53:0] mul_out, oc_out; //set this to 56 bits as the output will have 2 integers, 26 fractional
+
+    logic [2:0] comp_out;
+    logic [1:0] rem2;
+    logic Q_bit, QP_bit, QN_bit;
+    logic [2:0] Q3bit;
+    logic [1:0] Q2bit;
+    logic [26:0] q_const, qp_const, qm_const;
+
 
     //assign ia_out = 24'h60_0000; //can change to "better" guess
     assign num = {1'b1, inputNum[22:0], 3'h0}; 
@@ -66,5 +74,23 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, out, tb_rega,
     assign out = mul_out; //wil need to change back to 23 bits
     //assign q = rega_out;
     //assign out = mul_out[51:29]; //will need an output of 23 bits (fraction) but not until end
+
+    comparator #(27) comp1(rrem, 27'b0000_0000_0000_0000_0000_0000_000, comp_out);
+    assign rem2 = comp_out[2:1];
+
+    //num[2] is the guard bit, rem2 is output from comparator
+    assign Q_bit = (rm & (~num[2] | rem2[0])) | (~rm & (num[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
+    //assign Q_bit = (rm & (~num[2] | rem2[0])) | (~rm & *RZ logic*); //found using KMAP (rm = 1 does RN)
+    assign QP_bit = rm & (num[2] & ~rem2[0]); //RN mode and KMAP logic
+    assign QN_bit = ~rm & (~num[2] & rem2[0]);
+
+    assign Q3bit = {Q_bit, QP_bit, QN_bit};
+
+    enc32 Qenc(Q3bit, Q2bit);
+
+    assign q_const = {32'h0000_0040};
+    assign qp_const = {32'h0000_0140};
+    assign qm_const = {32'hFFFF_FF3F};
+    mux3 #(27) q_mux(q_const, qp_const, qm_const, Q2bit, qmux_out) //this just outputs the correct q, qp, or qm
 
 endmodule //fpdiv

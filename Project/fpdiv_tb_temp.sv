@@ -17,7 +17,7 @@ module stimulus ();
    integer desc3;
    
    // Instantiate DUT
-   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem);
+   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem);
 
    // Setup the clock to toggle every 1 time units 
    initial 
@@ -50,8 +50,11 @@ module stimulus ();
      // #0  inputNum = 32'b0000_0000_0_000_0000_0000_0000_0000_0000; //represents N =1 D =1
 	// #0  inputDenom = 32'b0000_0000_0_000_0000_0000_0000_0000_0000;
 
-     #0  inputNum = 32'b0000_0000_0_10100010011110010001010; //first 9 bits for integer/exponent
-	#0  inputDenom = 32'b0000_0000_0_00111100010010110000101;
+     // #0  inputNum = 32'b0000_0000_0_11011000011110010011111; //1.8456 //first 9 bits for integer/exponent
+	// #0  inputDenom = 32'b0000_0000_0_00111111000101000001001; //1.2464
+
+     #0  inputNum = 32'b0000_0000_0_00111111000101000001001; //1.2464 //first 9 bits for integer/exponent
+	#0  inputDenom = 32'b0000_0000_0_11011000011110010011111; //1.8456
 
      #5 sel_mux4 = 2'b00; //iteration 1
      #0 sel_mux3 = 2'b00; //multiply input numerator by IA
