@@ -89,8 +89,12 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     enc32 Qenc(Q3bit, Q2bit);
 
     assign q_const = {32'h0000_0040};
+    assign q_const = 27'b0_0000_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
     assign qp_const = {32'h0000_0140};
     assign qm_const = {32'hFFFF_FF3F};
-    mux3 #(27) q_mux(q_const, qp_const, qm_const, Q2bit, qmux_out) //this just outputs the correct q, qp, or qm
+
+    assign q_out = 
+
+    //mux3 #(27) q_mux_upper(q_const, qp_const, qm_const, Q2bit, qmux_out) //this just outputs the correct q, qp, or qm
 
 endmodule //fpdiv
