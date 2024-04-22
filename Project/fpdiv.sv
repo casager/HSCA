@@ -1,4 +1,4 @@
-module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant);
+module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
 
     input logic [31:0] inputNum, inputDenom;
     input logic clk, reset, en_a, en_b, en_rem, rm; //enable c not needed since en_b operates at same time
@@ -14,6 +14,8 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     //logic [53:0] regrem_out;
 
     logic [26:0] num, denom; //input and output as 23 bit [22:0], 2 int places and guard bits for 28 total
+    logic sign;
+    logic [7:0] exp;
     logic [26:0] ia_out, rega_out, regb_out, regc_out, mux3_out, mux4_out;
     logic [53:0] mul_out, oc_out; //set this to 56 bits as the output will have 2 integers, 26 fractional
 
@@ -26,9 +28,13 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     logic [26:0] Q_sum1, QP_sum1, QM_sum1,  Q_sum0, QP_sum0, QM_sum0;
     output logic [26:0] Q_sum, QP_sum, QM_sum, Qmux_out;
     output logic [22:0] final_mant;
+    output logic [31:0] final_ans;
 
 
     //assign ia_out = 24'h60_0000; //can change to "better" guess
+    assign sign = inputNum[31] ^ inputDenom[31];
+    assign exp = inputNum[30:23] + inputDenom[30:23];
+
     assign num = {1'b1, inputNum[22:0], 3'h0}; 
     assign denom = {1'b1, inputDenom[22:0], 3'h0};
     // assign num = {2'b01, inputNum[22:0], 3'b000}; 
@@ -112,6 +118,8 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     mux3 #(27) Qmux(Q_sum, QP_sum, QM_sum, Q2bit, Qmux_out); //change this to logic to get correct Q answers
 
     assign final_mant = Qmux_out[25:3];
+
+    assign final_ans = {sign, exp, final_mant};
 
 
 

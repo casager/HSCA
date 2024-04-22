@@ -15,12 +15,14 @@ module stimulus ();
    logic [26:0] Q_sum, QP_sum, QM_sum, Qmux_out;
    logic [22:0] final_mant;
    logic rm;
+
+   logic [31:0] final_ans;
     
    integer handle3;
    integer desc3;
    
    // Instantiate DUT
-   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant);
+   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
 
    // Setup the clock to toggle every 1 time units 
    initial 
@@ -41,10 +43,12 @@ module stimulus ();
    always
      begin
 	desc3 = handle3;
-	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %h || %h", 
-		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant);
+	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %h || %h || %h", 
+		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
      end   
    
+     //Qmux_out is the selection of Q, QP, QM in the mux using remainder and guard digit
+     //final_mant takes the first 23 bits in decimal of Qmux_out and final_ans should be answer
    initial 
      begin
 	// #0  reset = 1'b1;
@@ -59,10 +63,10 @@ module stimulus ();
      // #0  inputNum = 32'b0000_0000_0_00111111000101000001001; //1.2464 //first 9 bits for integer/exponent
 	// #0  inputDenom = 32'b0000_0000_0_11011000011110010011111; //1.8456
 
-     #0  inputNum = 32'h8683F7FF; //first test case of f32_div_rne
-	#0  inputDenom = 32'hC07F3FFF;
+     // #0  inputNum = 32'h8683F7FF; //first test case of f32_div_rne
+	// #0  inputDenom = 32'hC07F3FFF;
 
-     #0  inputNum = 32'h9EDE38F7; //first test case of f32_div_rne
+     #0  inputNum = 32'h9EDE38F7; //second test case of f32_div_rne
 	#0  inputDenom = 32'h3E7F7F7F;
 
      #0  rm = 1'b1;
