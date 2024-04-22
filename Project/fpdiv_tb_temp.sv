@@ -12,12 +12,15 @@ module stimulus ();
    //logic [26:0] scaled_rrem;
    logic [26:0] rrem;
    //logic [53:0] rrem;
-   
+   logic [26:0] Q_sum, QP_sum, QM_sum, Qmux_out;
+   logic [22:0] final_mant;
+   logic rm;
+    
    integer handle3;
    integer desc3;
    
    // Instantiate DUT
-   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem);
+   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant);
 
    // Setup the clock to toggle every 1 time units 
    initial 
@@ -38,8 +41,8 @@ module stimulus ();
    always
      begin
 	desc3 = handle3;
-	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b", 
-		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem);
+	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %h || %h", 
+		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant);
      end   
    
    initial 
@@ -53,9 +56,16 @@ module stimulus ();
      // #0  inputNum = 32'b0000_0000_0_11011000011110010011111; //1.8456 //first 9 bits for integer/exponent
 	// #0  inputDenom = 32'b0000_0000_0_00111111000101000001001; //1.2464
 
-     #0  inputNum = 32'b0000_0000_0_00111111000101000001001; //1.2464 //first 9 bits for integer/exponent
-	#0  inputDenom = 32'b0000_0000_0_11011000011110010011111; //1.8456
+     // #0  inputNum = 32'b0000_0000_0_00111111000101000001001; //1.2464 //first 9 bits for integer/exponent
+	// #0  inputDenom = 32'b0000_0000_0_11011000011110010011111; //1.8456
 
+     #0  inputNum = 32'h8683F7FF; //first test case of f32_div_rne
+	#0  inputDenom = 32'hC07F3FFF;
+
+     #0  inputNum = 32'h9EDE38F7; //first test case of f32_div_rne
+	#0  inputDenom = 32'h3E7F7F7F;
+
+     #0  rm = 1'b1;
      #5 sel_mux4 = 2'b00; //iteration 1
      #0 sel_mux3 = 2'b00; //multiply input numerator by IA
 	#0 en_a = 1'b1;
