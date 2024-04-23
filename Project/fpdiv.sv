@@ -1,18 +1,20 @@
-module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
+module fpdiv(final_ans, inputNum, inputDenom, rm, op_type, start, reset, clk, en_a, en_b, en_rem, sel_mux3, sel_mux4);
 
     input logic [31:0] inputNum, inputDenom;
-    input logic clk, reset, en_a, en_b, en_rem, rm; //enable c not needed since en_b operates at same time
+    input logic clk, start, reset, en_a, en_b, en_rem, rm; //enable c not needed since en_b operates at same time
     input logic [1:0] sel_mux3;
     input logic [1:0] sel_mux4;
 
-    output logic [53:0] out; 
-    output logic [26:0] tb_rega, tb_regb, tb_regc; //output values of registers during every pass
-    output logic [26:0] rrem; 
+    output logic [1:0] op_type;
+    output logic [31:0] final_ans;
     //output logic [53:0] rrem; //what size does this need to be ?
     
+    logic [53:0] out; //these lines may not be needed
+    logic [26:0] tb_rega, tb_regb, tb_regc; //output values of registers during every pass
+    logic [26:0] rrem;    
+
     logic [26:0] regrem_out;
     //logic [53:0] regrem_out;
-
     logic [26:0] num, denom; //input and output as 23 bit [22:0], 2 int places and guard bits for 28 total
     logic sign;
     logic [7:0] exp;
@@ -26,36 +28,21 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     logic [1:0] Q2bit;
     logic [26:0] q_const, qp_const, qm_const;
     logic [26:0] Q_sum1, QP_sum1, QM_sum1,  Q_sum0, QP_sum0, QM_sum0;
-    output logic [26:0] Q_sum, QP_sum, QM_sum, Qmux_out;
-    output logic [22:0] final_mant;
-    output logic [31:0] final_ans;
+    logic [26:0] Q_sum, QP_sum, QM_sum, Qmux_out;
+    logic [22:0] final_mant;
 
 
     //assign ia_out = 24'h60_0000; //can change to "better" guess
     assign sign = inputNum[31] ^ inputDenom[31];
-    assign exp = inputNum[30:23] + inputDenom[30:23];
 
     assign num = {1'b1, inputNum[22:0], 3'h0}; 
     assign denom = {1'b1, inputDenom[22:0], 3'h0};
-    // assign num = {2'b01, inputNum[22:0], 3'b000}; 
-    // assign denom = {2'b01, inputDenom[22:0], 3'b000};
+
     assign ia_out = 27'b0110_0000_0000_0000_0000_0000_000; //should represent 0.75
     mux3 #(27) mux3(ia_out, regc_out, denom, sel_mux3, mux3_out); //changed this from mux2 to mux3 for remainder
     mux4 #(27) mux4(num, denom, rega_out, regb_out, sel_mux4, mux4_out);
     //multiply module
     assign mul_out = mux3_out * mux4_out;
-    
-    //do not need either of these
-    //determine ulp for rne (G * (L + R + sticky))
-    //assign sticky = |mul_out[20:0];
-    // assumption is 23 is int bit, 21 is round bit (0.11), and sticky is past that
-    //assign ulp = mul_out[22] & (mul_out[23] | mul_out[21] | sticky); 
-
-    //rne ask about this section (dont need, just chopping off bits)
-    //adder #(26) add1(mul_out[46:23], {23'h0, ulp}, rne_out);
-
-    //2c being used instead of OC
-    //adder #(26) add2(~rne_out[23:0], {23'h0, vdd}, twocmp_out); //where is vdd
     
     //OC implementation
     assign oc_out = {1'b0, ~mul_out[52:0]}; //ask why this is occuring 
@@ -97,32 +84,39 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
 
     enc32 Qenc(Q3bit, Q2bit);
 
-    //assign q_const = {32'h0000_0040};
     assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
     assign qp_const =  27'b0_00_0000_0000_0000_0000_0001_0100;
     assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_0011;
 
-    assign Q_sum1 = rega_out + q_const; //change back to Q_sum1
+    assign Q_sum1 = rega_out + q_const;
     assign QP_sum1 = rega_out + qp_const;
     assign QM_sum1 = rega_out + qm_const + 1'b1;
 
-    assign Q_sum0 = {rega_out[25:0],1'b0} + q_const; //change back to Q_sum0
-    assign QP_sum0 = {rega_out[25:0],1'b0} + qp_const;
-    assign QM_sum0 = {rega_out[25:0],1'b0} + qm_const + 1'b1;
+    //assign Q_sum0 = {rega_out[25:0],1'b0} + q_const;
+    //assign Q_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + q_const;
+    assign Q_sum0 = {Q_sum1[25:0],1'b0}; //changed from adding q_const after shift to adding it before shift
+    //assign QP_sum0 = {rega_out[25:0],1'b0} + qp_const;
+    //assign QP_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + qp_const;
+    assign QP_sum0 = {QP_sum1[25:0],1'b0};
+    //assign QM_sum0 = {rega_out[25:0],1'b0} + qm_const + 1'b1;
+    //assign QM_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + qm_const + 1'b1;
+    assign QM_sum0 = {QM_sum1[25:0],1'b0}; //may need to check this so last bit is correct
 
-    assign Q_sum = rega_out[26] ? Q_sum1 : Q_sum0;
+    assign Q_sum = rega_out[26] ? Q_sum1 : Q_sum0; //rega_out[26] shows if Q shifted or not 
     assign QP_sum = rega_out[26] ? QP_sum1 : QP_sum0;
     assign QM_sum = rega_out[26] ? QM_sum1 : QM_sum0;
 
     //mux3 #(27) mux3(ia_out, regc_out, denom, sel_mux3, mux3_out);
     mux3 #(27) Qmux(Q_sum, QP_sum, QM_sum, Q2bit, Qmux_out); //change this to logic to get correct Q answers
 
+    assign op_type = Q2bit;
+
     assign final_mant = Qmux_out[25:3];
+    assign exp = ((inputNum[30:23] - inputDenom[30:23]) + 8'b0111_1111) - {7'b000_0000, ~rega_out[26]}; //1 subtracted from exponent if 0 in int digit
 
     assign final_ans = {sign, exp, final_mant};
 
-
-
     //mux3 #(27) q_mux_upper(q_const, qp_const, qm_const, Q2bit, qmux_out) //this just outputs the correct q, qp, or qm
+    
 
 endmodule //fpdiv

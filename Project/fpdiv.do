@@ -27,7 +27,7 @@ if [file exists work] {
 vlib work
 
 # compile source files
-vlog fpdiv.sv flopenr.sv mux.sv fpdiv_tb_temp.sv comparator.sv enc32.sv
+vlog fpdiv.sv flopenr.sv mux.sv tb_fpdiv.sv comparator.sv enc32.sv
 
 # start and run simulation
 vsim -voptargs=+acc work.stimulus
