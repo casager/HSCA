@@ -88,13 +88,21 @@ module fpdiv(final_ans, inputNum, inputDenom, rm, op_type, start, reset, clk, en
     assign qp_const =  27'b0_00_0000_0000_0000_0000_0001_0100;
     assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_0011;
 
+    // assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
+    // assign qp_const =  27'b0_00_0000_0000_0000_0000_0000_1100;
+    // assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_1011;
+
+    // assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0010; //first bit accounts for integer being added
+    // assign qp_const =  27'b0_00_0000_0000_0000_0000_0000_1010;
+    // assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_1001;
+
     assign Q_sum1 = rega_out + q_const;
     assign QP_sum1 = rega_out + qp_const;
     assign QM_sum1 = rega_out + qm_const + 1'b1;
 
-    //assign Q_sum0 = {rega_out[25:0],1'b0} + q_const;
+    //assign Q_sum0 = {rega_out[25:0],1'b0} + q_const; //1464 errors with q_const[2]=1
     //assign Q_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + q_const;
-    assign Q_sum0 = {Q_sum1[25:0],1'b0}; //changed from adding q_const after shift to adding it before shift
+    assign Q_sum0 = {Q_sum1[25:0],1'b0}; //changed from adding q_const after shift to adding it before shift //1002 errors with q_const[2]=1
     //assign QP_sum0 = {rega_out[25:0],1'b0} + qp_const;
     //assign QP_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + qp_const;
     assign QP_sum0 = {QP_sum1[25:0],1'b0};
@@ -105,6 +113,7 @@ module fpdiv(final_ans, inputNum, inputDenom, rm, op_type, start, reset, clk, en
     assign Q_sum = rega_out[26] ? Q_sum1 : Q_sum0; //rega_out[26] shows if Q shifted or not 
     assign QP_sum = rega_out[26] ? QP_sum1 : QP_sum0;
     assign QM_sum = rega_out[26] ? QM_sum1 : QM_sum0;
+
 
     //mux3 #(27) mux3(ia_out, regc_out, denom, sel_mux3, mux3_out);
     mux3 #(27) Qmux(Q_sum, QP_sum, QM_sum, Q2bit, Qmux_out); //change this to logic to get correct Q answers

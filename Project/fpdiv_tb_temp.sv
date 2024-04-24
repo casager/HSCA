@@ -10,11 +10,12 @@ module stimulus ();
    logic [1:0] sel_mux3;
    logic [26:0] tb_rega, tb_regb, tb_regc;
    //logic [26:0] scaled_rrem;
-   logic [26:0] rrem;
+   logic [27:0] rrem;
    //logic [53:0] rrem;
    logic [26:0] Q_sum, QP_sum, QM_sum, Qmux_out;
    logic [22:0] final_mant;
    logic rm;
+   logic [23:0] Q_mant, QP_mant, QM_mant;
 
    logic [31:0] final_ans;
     
@@ -22,7 +23,7 @@ module stimulus ();
    integer desc3;
    
    // Instantiate DUT
-   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
+   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans, Q_mant, QP_mant, QM_mant);
 
    // Setup the clock to toggle every 1 time units 
    initial 
@@ -43,8 +44,8 @@ module stimulus ();
    always
      begin
 	desc3 = handle3;
-	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %b %b %b || %b || %h || %h", 
-		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
+	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %b %b %b || %b || %h || %h", 
+		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_mant, QP_mant, QM_mant, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
      end   
      //changed the Q*_sum values to only show which mantissa will be visible
      //Qmux_out is the selection of Q, QP, QM in the mux using remainder and guard digit
@@ -63,8 +64,8 @@ module stimulus ();
      // #0  inputNum = 32'b0000_0000_0_00111111000101000001001; //1.2464 //first 9 bits for integer/exponent
 	// #0  inputDenom = 32'b0000_0000_0_11011000011110010011111; //1.8456
 
-     // #0  inputNum = 32'h8683F7FF; //1.03100574016571045 //first test case of f32_div_rne
-	// #0  inputDenom = 32'hC07F3FFF; //1.9941405057907104
+     #0  inputNum = 32'h8683F7FF; //1.03100574016571045 //first test case of f32_div_rne
+	#0  inputDenom = 32'hC07F3FFF; //1.9941405057907104
 
      // #0  inputNum = 32'h9EDE38F7; //1.736113429069519 //second test case of f32_div_rne
 	// #0  inputDenom = 32'h3E7F7F7F; //1.996078372001648
@@ -72,8 +73,8 @@ module stimulus ();
      // #0  inputNum = 32'h4F951295; //1.16462957859039307 //3rd test case of f32_div_rne
 	// #0  inputDenom = 32'h41E00002; //1.7500002384185791
 
-     #0  inputNum = 32'hbed56444; //rand test case of f32_div_rne
-	#0  inputDenom = 32'h3e7ff400; 
+     // #0  inputNum = 32'hbed56444; //rand test case of f32_div_rne
+	// #0  inputDenom = 32'h3e7ff400; 
 
      //start
      #0  rm = 1'b1;

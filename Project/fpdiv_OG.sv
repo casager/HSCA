@@ -1,4 +1,4 @@
-module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
+module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans, Q_mant, QP_mant, QM_mant);
 
     input logic [31:0] inputNum, inputDenom;
     input logic clk, reset, en_a, en_b, en_rem, rm; //enable c not needed since en_b operates at same time
@@ -7,7 +7,8 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
 
     output logic [53:0] out; 
     output logic [26:0] tb_rega, tb_regb, tb_regc; //output values of registers during every pass
-    output logic [26:0] rrem; 
+    output logic [27:0] rrem; //rrem 28 bits bc need to see true sign for remainder
+    output logic [23:0] Q_mant, QP_mant, QM_mant;
     //output logic [53:0] rrem; //what size does this need to be ?
     
     logic [26:0] regrem_out;
@@ -21,11 +22,11 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
 
     logic [2:0] comp_out;
     logic [1:0] rem2;
-    logic Q_bit, QP_bit, QM_bit;
+    logic Q_bit, QP_bit, QM_bit, rem_bit;
     logic [2:0] Q3bit;
     logic [1:0] Q2bit;
     logic [26:0] q_const, qp_const, qm_const;
-    logic [26:0] Q_sum1, QP_sum1, QM_sum1,  Q_sum0, QP_sum0, QM_sum0;
+    logic [26:0] Q_sum1, QP_sum1, QM_sum1,  Q_sum0, QP_sum0, QM_sum0, Q_shift;
     output logic [26:0] Q_sum, QP_sum, QM_sum, Qmux_out;
     output logic [22:0] final_mant;
     output logic [31:0] final_ans;
@@ -71,7 +72,8 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     //assign rrem = regrem_out - {num, 27'b0000_0000_0000_0000_0000_0000_000}; //subtracting the numerator after multiplication
     //assign rrem = {num, 27'b0000_0000_0000_0000_0000_0000_000} - regrem_out;
 
-    assign rrem = regrem_out - num; //radix point is correct form
+    //assign rrem = regrem_out - num; //radix point is correct form //change to make room for sign
+    assign rrem = {1'b0, regrem_out} - {1'b0, num}; //regrem_out and num inherently positive, remainder might not be
     //assign rrem = num - regrem_out;
     //assign scaled_rrem = rrem[26:0];
 
@@ -83,45 +85,65 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     //assign q = rega_out;
     //assign out = mul_out[51:29]; //will need an output of 23 bits (fraction) but not until end
 
-    comparator #(27) comp1(rrem, 27'b0000_0000_0000_0000_0000_0000_000, comp_out);
+    comparator #(28) comp1(rrem, 28'b0000_0000_0000_0000_0000_0000_0000, comp_out); //checks sign bit
     assign rem2 = comp_out[2:1];
 
     //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
+    //assign rem_bit = (rega_out[2] & rega_out[26]) | (Q_shift[2] & ~rega_out[26]); //guard bit will change depending on shift or not (MAYBE)
     assign Q_bit = (rm & (~rega_out[2] | rem2[0])) | (~rm & (rega_out[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
-    //assign Q_bit = (rm & (~num[2] | rem2[0])) | (~rm & *RZ logic*); //found using KMAP (rm = 1 does RN)
+    //assign Q_bit = (rm & (~rem_bit | rem2[0])) | (~rm & (rem_bit | ~rem2[0]));
     assign QP_bit = rm & (rega_out[2] & ~rem2[0]); //RN mode and KMAP logic
+    //assign QP_bit = rm & (rem_bit & ~rem2[0]);
     assign QM_bit = ~rm & (~rega_out[2] & rem2[0]);
+    //assign QM_bit = ~rm & (~rem_bit & rem2[0]);
 
     assign Q3bit = {Q_bit, QP_bit, QM_bit};
 
     enc32 Qenc(Q3bit, Q2bit);
 
-    //assign q_const = {32'h0000_0040};
-    // assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
-    // assign qp_const =  27'b0_00_0000_0000_0000_0000_0001_0100;
-    // assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_0011;
-
+    //placement at bit 25
     assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
     assign qp_const =  27'b0_00_0000_0000_0000_0000_0001_0100;
     assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_0011;
+
+    // //change placement at bit 23 for increment, decrement
+    // assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
+    // assign qp_const =  27'b0_00_0000_0000_0000_0000_0000_1100;
+    // assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_1011;
+
+    // //change placement at bit 23 for increment, decrement
+    // assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0010; //first bit accounts for integer being added
+    // assign qp_const =  27'b0_00_0000_0000_0000_0000_0000_0110;
+    // assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_1101;
+
+    //placement at bit 27
+    // assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0010; //first bit accounts for integer being added
+    // assign qp_const =  27'b0_00_0000_0000_0000_0000_0000_1010;
+    // assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_1001;
 
     assign Q_sum1 = rega_out + q_const;
     assign QP_sum1 = rega_out + qp_const;
     assign QM_sum1 = rega_out + qm_const + 1'b1;
 
-    //assign Q_sum0 = {rega_out[25:0],1'b0} + q_const;
+    assign Q_shift = {rega_out[25:0],1'b0};
+    
+    assign Q_sum0 = {rega_out[25:0],1'b0} + q_const;
     //assign Q_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + q_const;
-    assign Q_sum0 = {Q_sum1[25:0],1'b0}; //changed from adding q_const after shift to adding it before shift
-    //assign QP_sum0 = {rega_out[25:0],1'b0} + qp_const;
+    //assign Q_sum0 = {Q_sum1[25:0],1'b0}; //changed from adding q_const after shift to adding it before shift
+    assign QP_sum0 = {rega_out[25:0],1'b0} + qp_const;
     //assign QP_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + qp_const;
-    assign QP_sum0 = {QP_sum1[25:0],1'b0};
-    //assign QM_sum0 = {rega_out[25:0],1'b0} + qm_const + 1'b1;
+    //assign QP_sum0 = {QP_sum1[25:0],1'b0};
+    assign QM_sum0 = {rega_out[25:0],1'b0} + qm_const + 1'b1;
     //assign QM_sum0 = {rega_out[25:3],1'b0, rega_out[2:0]} + qm_const + 1'b1;
-    assign QM_sum0 = {QM_sum1[25:0],1'b0}; //may need to check this so last bit is correct
+    //assign QM_sum0 = {QM_sum1[25:0],1'b0}; //may need to check this so last bit is correct
 
     assign Q_sum = rega_out[26] ? Q_sum1 : Q_sum0; //rega_out[26] shows if Q shifted or not 
     assign QP_sum = rega_out[26] ? QP_sum1 : QP_sum0;
     assign QM_sum = rega_out[26] ? QM_sum1 : QM_sum0;
+
+    assign Q_mant = Q_sum[26:3];
+    assign QP_mant = QP_sum[26:3];
+    assign QM_mant = QM_sum[26:3];
 
     //mux3 #(27) mux3(ia_out, regc_out, denom, sel_mux3, mux3_out);
     mux3 #(27) Qmux(Q_sum, QP_sum, QM_sum, Q2bit, Qmux_out); //change this to logic to get correct Q answers
