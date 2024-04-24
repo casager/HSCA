@@ -88,25 +88,30 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     comparator #(28) comp1(rrem, 28'b0000_0000_0000_0000_0000_0000_0000, comp_out); //checks sign bit
     assign rem2 = comp_out[2:1];
 
-    //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
-    //assign rem_bit = (rega_out[2] & rega_out[26]) | (Q_shift[2] & ~rega_out[26]); //guard bit will change depending on shift or not (MAYBE)
+    // //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
     assign Q_bit = (rm & (~rega_out[2] | rem2[0])) | (~rm & (rega_out[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
-    //assign Q_bit = (rm & (~rem_bit | rem2[0])) | (~rm & (rem_bit | ~rem2[0]));
     assign QP_bit = rm & (rega_out[2] & ~rem2[0]); //RN mode and KMAP logic
-    //assign QP_bit = rm & (rem_bit & ~rem2[0]);
     assign QM_bit = ~rm & (~rega_out[2] & rem2[0]);
-    //assign QM_bit = ~rm & (~rem_bit & rem2[0]);
+
+    // //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
+    // assign rem_bit = (rega_out[2] & rega_out[26]) | (Q_shift[2] & ~rega_out[26]); //guard bit will change depending on shift or not (MAYBE)
+    // //assign Q_bit = (rm & (~rega_out[2] | ~rem2[0])) | (~rm & (rega_out[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
+    // assign Q_bit = (rm & (~rem_bit | ~rem2[0])) | (~rm & (rem_bit | ~rem2[0]));
+    // //assign QP_bit = rm & (rega_out[2] & rem2[0]); //RN mode and KMAP logic
+    // assign QP_bit = rm & (rem_bit & rem2[0]);
+    // //assign QM_bit = ~rm & (~rega_out[2] & rem2[0]);
+    // assign QM_bit = ~rm & (~rem_bit & rem2[0]);
 
     assign Q3bit = {Q_bit, QP_bit, QM_bit};
 
     enc32 Qenc(Q3bit, Q2bit);
 
     //placement at bit 25
-    assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
+    assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0010; //first bit accounts for integer being added
     assign qp_const =  27'b0_00_0000_0000_0000_0000_0001_0100;
     assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_0011;
 
-    // //change placement at bit 23 for increment, decrement
+    //change placement at bit 23 for increment, decrement
     // assign q_const = 27'b0_00_0000_0000_0000_0000_0000_0100; //first bit accounts for integer being added
     // assign qp_const =  27'b0_00_0000_0000_0000_0000_0000_1100;
     // assign qm_const = 27'b1_11_1111_1111_1111_1111_1111_1011;

@@ -44,7 +44,7 @@ module stimulus ();
    always
      begin
 	desc3 = handle3;
-	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %b %b %b || %b || %h || %h", 
+	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %b %b %b || %h || %h || %h", 
 		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_mant, QP_mant, QM_mant, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
      end   
      //changed the Q*_sum values to only show which mantissa will be visible
@@ -64,14 +64,20 @@ module stimulus ();
      // #0  inputNum = 32'b0000_0000_0_00111111000101000001001; //1.2464 //first 9 bits for integer/exponent
 	// #0  inputDenom = 32'b0000_0000_0_11011000011110010011111; //1.8456
 
-     #0  inputNum = 32'h8683F7FF; //1.03100574016571045 //first test case of f32_div_rne
-	#0  inputDenom = 32'hC07F3FFF; //1.9941405057907104
+     // #0  inputNum = 32'h8683F7FF; //1.03100574016571045 //first test case of f32_div_rne
+	// #0  inputDenom = 32'hC07F3FFF; //1.9941405057907104
 
-     // #0  inputNum = 32'h9EDE38F7; //1.736113429069519 //second test case of f32_div_rne
-	// #0  inputDenom = 32'h3E7F7F7F; //1.996078372001648
+     #0  inputNum = 32'h9EDE38F7; //1.736113429069519 //second test case of f32_div_rne
+	#0  inputDenom = 32'h3E7F7F7F; //1.996078372001648
      
      // #0  inputNum = 32'h4F951295; //1.16462957859039307 //3rd test case of f32_div_rne
 	// #0  inputDenom = 32'h41E00002; //1.7500002384185791
+
+     // #0  inputNum = 32'hce7d4590; //rand test case of f32_div_rne
+	// #0  inputDenom = 32'hc0fffc3f; 
+
+     // #0  inputNum = 32'h137f7ffb; //rand test case of f32_div_rne
+	// #0  inputDenom = 32'ha68002fe; 
 
      // #0  inputNum = 32'hbed56444; //rand test case of f32_div_rne
 	// #0  inputDenom = 32'h3e7ff400; 
