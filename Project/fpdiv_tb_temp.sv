@@ -16,6 +16,8 @@ module stimulus ();
    logic [22:0] final_mant;
    logic rm;
    logic [23:0] Q_mant, QP_mant, QM_mant;
+   logic g_out;
+   logic [1:0] sign_out;
 
    logic [31:0] final_ans;
     
@@ -23,7 +25,7 @@ module stimulus ();
    integer desc3;
    
    // Instantiate DUT
-   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans, Q_mant, QP_mant, QM_mant);
+   fpdiv dut (inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans, Q_mant, QP_mant, QM_mant, g_out, sign_out);
 
    // Setup the clock to toggle every 1 time units 
    initial 
@@ -44,8 +46,8 @@ module stimulus ();
    always
      begin
 	desc3 = handle3;
-	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %b %b %b || %h || %h || %h", 
-		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_mant, QP_mant, QM_mant, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans);
+	#5 $fdisplay(desc3, "%b %b || %b %b || %b %b %b || %b %b %b || %b || %h %h %h || %b %b %b || %h || %h || %h || %b %b", 
+		    clk, reset, sel_mux3, sel_mux4, en_a, en_b, en_rem, tb_rega, tb_regb, tb_regc, rrem, Q_mant, QP_mant, QM_mant, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans, g_out, sign_out);
      end   
      //changed the Q*_sum values to only show which mantissa will be visible
      //Qmux_out is the selection of Q, QP, QM in the mux using remainder and guard digit
@@ -76,8 +78,11 @@ module stimulus ();
      // #0  inputNum = 32'hce7d4590; //rand test case of f32_div_rne
 	// #0  inputDenom = 32'hc0fffc3f; 
 
-     // #0  inputNum = 32'h137f7ffb; //rand test case of f32_div_rne
-	// #0  inputDenom = 32'ha68002fe; 
+     // #0  inputNum = 32'hc2800040; //rand test case of f32_div_rne
+	// #0  inputDenom = 32'h4fffdff7; 
+
+     // #0  inputNum = 32'h760077ff; //rand test case of f32_div_rne
+	// #0  inputDenom = 32'hbcb1b7e5;
 
      // #0  inputNum = 32'hbed56444; //rand test case of f32_div_rne
 	// #0  inputDenom = 32'h3e7ff400; 

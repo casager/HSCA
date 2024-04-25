@@ -1,4 +1,4 @@
-module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans, Q_mant, QP_mant, QM_mant);
+module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_rega, tb_regb, tb_regc, sel_mux3, sel_mux4, rrem, Q_sum, QP_sum, QM_sum, Qmux_out, final_mant, final_ans, Q_mant, QP_mant, QM_mant, g_out, sign_out);
 
     input logic [31:0] inputNum, inputDenom;
     input logic clk, reset, en_a, en_b, en_rem, rm; //enable c not needed since en_b operates at same time
@@ -9,6 +9,8 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     output logic [26:0] tb_rega, tb_regb, tb_regc; //output values of registers during every pass
     output logic [27:0] rrem; //rrem 28 bits bc need to see true sign for remainder
     output logic [23:0] Q_mant, QP_mant, QM_mant;
+    output logic g_out;
+    output logic [1:0] sign_out;
     //output logic [53:0] rrem; //what size does this need to be ?
     
     logic [26:0] regrem_out;
@@ -89,9 +91,17 @@ module fpdiv(inputNum, inputDenom, clk, reset, en_a, en_b, en_rem, rm, out, tb_r
     assign rem2 = comp_out[2:1];
 
     // //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
-    assign Q_bit = (rm & (~rega_out[2] | rem2[0])) | (~rm & (rega_out[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
-    assign QP_bit = rm & (rega_out[2] & ~rem2[0]); //RN mode and KMAP logic
-    assign QM_bit = ~rm & (~rega_out[2] & rem2[0]);
+    // assign Q_bit = (rm & (~rega_out[2] | rem2[0])) | (~rm & (rega_out[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
+    // assign QP_bit = rm & (rega_out[2] & ~rem2[0]); //RN mode and KMAP logic
+    // assign QM_bit = ~rm & (~rega_out[2] & rem2[0]);
+        
+    assign g_bit = (rega_out[2] & rega_out[26]) | (Q_shift[2] & ~rega_out[26]); //guard bit will change depending on shift or not (MAYBE)
+    assign Q_bit = (rm & (~g_bit | rem2[0])) | (~rm & (g_bit | ~rem2[0]));
+    assign QP_bit = rm & (g_bit & ~rem2[0]);
+    assign QM_bit = ~rm & (~g_bit & rem2[0]);
+
+    assign g_out = g_bit;
+    assign sign_out = rem2;
 
     // //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
     // assign rem_bit = (rega_out[2] & rega_out[26]) | (Q_shift[2] & ~rega_out[26]); //guard bit will change depending on shift or not (MAYBE)

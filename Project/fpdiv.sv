@@ -22,7 +22,7 @@ module fpdiv(final_ans, inputNum, inputDenom, rm, op_type, start, reset, clk, en
     logic [53:0] mul_out, oc_out; //set this to 56 bits as the output will have 2 integers, 26 fractional
 
     logic [2:0] comp_out;
-    logic [1:0] rem2;
+    logic [1:0] rem2, g_bit;
     logic Q_bit, QP_bit, QM_bit;
     logic [2:0] Q3bit;
     logic [1:0] Q2bit;
@@ -75,9 +75,14 @@ module fpdiv(final_ans, inputNum, inputDenom, rm, op_type, start, reset, clk, en
     assign rem2 = comp_out[2:1]; //still fine even with change to rrem
 
     //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
-    assign Q_bit = (rm & (~rega_out[2] | rem2[0])) | (~rm & (rega_out[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
-    assign QP_bit = rm & (rega_out[2] & ~rem2[0]); //RN mode and KMAP logic
-    assign QM_bit = ~rm & (~rega_out[2] & rem2[0]);
+    // assign Q_bit = (rm & (~rega_out[2] | rem2[0])) | (~rm & (rega_out[2] | ~rem2[0])); //found using KMAP (rm = 1 does RN)
+    // assign QP_bit = rm & (rega_out[2] & ~rem2[0]); //RN mode and KMAP logic
+    // assign QM_bit = ~rm & (~rega_out[2] & rem2[0]);
+
+    assign g_bit = (rega_out[2] & rega_out[26]) | (Q_shift[2] & ~rega_out[26]); //guard bit will change depending on shift or not (MAYBE)
+    assign Q_bit = (rm & (~g_bit | rem2[0])) | (~rm & (g_bit | ~rem2[0]));
+    assign QP_bit = rm & (g_bit & ~rem2[0]);
+    assign QM_bit = ~rm & (~g_bit & rem2[0]);
 
     // //num[2] is the guard bit, rem2 is output from comparator //CHANGE NUM TO REGA_OUT
     // assign rem_bit = (rega_out[2] & rega_out[26]) | (Q_shift[2] & ~rega_out[26]); //guard bit will change depending on shift or not (MAYBE)

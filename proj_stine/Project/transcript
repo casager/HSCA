@@ -1,0 +1,80 @@
+# do fpdiv.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@mimi.ecen.okstate.edu.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 12:27:14 on Apr 24,2024
+# vlog fpdiv.sv flopenr.sv mux.sv tb_fpdiv.sv comparator.sv enc32.sv 
+# -- Compiling module fpdiv
+# -- Compiling module flopenr
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module mux5
+# -- Compiling module mux6
+# -- Compiling module mux7
+# -- Compiling module stimulus
+# -- Compiling module comparator
+# -- Compiling module enc32
+# 
+# Top level modules:
+# 	mux2
+# 	mux5
+# 	mux6
+# 	mux7
+# 	stimulus
+# 	comparator
+# 	enc32
+# End time: 12:27:14 on Apr 24,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" work.stimulus 
+# Start time: 12:27:14 on Apr 24,2024
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 2021.1 Jan 19 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.stimulus(fast)
+# Loading work.fpdiv(fast)
+# Loading work.mux3(fast)
+# Loading work.mux4(fast)
+# Loading work.flopenr(fast)
+# Loading work.flopenr(fast__1)
+# Loading work.mux3(fast__1)
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+# configure wave not supported in batch mode
+#          0 vectors processed
+#          0 vectors processed
+#          1 vectors processed
+#          2 vectors processed
+#          3 vectors processed
+#          4 vectors processed
+#          5 vectors processed
+#          6 vectors processed
+#          7 vectors processed
+#          8 vectors processed
+#          9 vectors processed
+# Simulation succeeded
+#         10 tests completed with          2 errors
+# ** Note: $stop    : tb_fpdiv.sv(132)
+#    Time: 2920 ns  Iteration: 1  Instance: /stimulus
+# Break in Module stimulus at tb_fpdiv.sv line 132
+# Stopped at tb_fpdiv.sv line 132
+# End time: 12:27:15 on Apr 24,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
