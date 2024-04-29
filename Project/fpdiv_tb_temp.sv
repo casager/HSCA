@@ -57,8 +57,8 @@ module stimulus ();
 	// #0  reset = 1'b1;
 	// #5 reset = 1'b0;
 
-     // #0  inputNum = 32'b0000_0000_0_000_0000_0000_0000_0000_0000; //represents N =1 D =1
-	// #0  inputDenom = 32'b0000_0000_0_000_0000_0000_0000_0000_0000;
+     #0  inputNum = 32'b0000_0000_0_000_0000_0000_0000_0000_0000; //represents N =1 D =1
+	#0  inputDenom = 32'b0000_0000_0_000_0000_0000_0000_0000_0000;
 
      // #0  inputNum = 32'b0000_0000_0_11011000011110010011111; //1.8456 //first 9 bits for integer/exponent
 	// #0  inputDenom = 32'b0000_0000_0_00111111000101000001001; //1.2464
@@ -69,8 +69,8 @@ module stimulus ();
      // #0  inputNum = 32'h8683F7FF; //1.03100574016571045 //first test case of f32_div_rne
 	// #0  inputDenom = 32'hC07F3FFF; //1.9941405057907104
 
-     #0  inputNum = 32'h9EDE38F7; //1.736113429069519 //second test case of f32_div_rne
-	#0  inputDenom = 32'h3E7F7F7F; //1.996078372001648
+     // #0  inputNum = 32'h9EDE38F7; //1.736113429069519 //second test case of f32_div_rne
+	// #0  inputDenom = 32'h3E7F7F7F; //1.996078372001648
      
      // #0  inputNum = 32'h4F951295; //1.16462957859039307 //3rd test case of f32_div_rne
 	// #0  inputDenom = 32'h41E00002; //1.7500002384185791

@@ -60,6 +60,7 @@ module fpdiv(final_ans, inputNum, inputDenom, rm, op_type, start, reset, clk, en
     //assign rrem = {num, 27'b0000_0000_0000_0000_0000_0000_000} - regrem_out;
 
     assign rrem = {1'b0, regrem_out} - {1'b0, num}; //radix point is correct form
+    //assign rrem = {1'b0, num} - {1'b0, regrem_out};
     //assign rrem = num - regrem_out;
     //assign scaled_rrem = rrem[26:0];
 

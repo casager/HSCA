@@ -130,7 +130,7 @@ module stimulus;
 		$stop;
 	     end	     
 	  end // if (~reset)
-	$display("%d vectors processed", vectornum);	
+	//$display("%d vectors processed", vectornum);	
      end // always @ (posedge clk)
    
 endmodule // stimulus
