@@ -54,9 +54,9 @@ module fpdiv(final_ans, inputNum, inputDenom, rm,
    assign rrem = regrem_out - N_rem; //radix point is correct form
 
    //assign q_const  = 31'b000_0000_0000_0000_0000_0000_0010_0000; //on Stine's
-   assign q_const  = 31'b000_0000_0000_0000_0000_0000_0100_0000; //Gives only 1 error with rest same
+   assign q_const  = 31'b000_0000_0000_0000_0000_0000_0100_0000; //Gives only 1 error with rest same (Stine's)
    // assign qp_const = 31'b000_0000_0000_0000_0000_0000_1010_0000; //on Stine's
-   assign qp_const = 31'b000_0000_0011_0000_0000_0000_0101_0000;
+   assign qp_const = 31'b000_0000_0000_0000_0000_0000_0101_0000;
    assign qm_const = 31'b111_1111_1111_1111_1111_1111_1001_1111; //on Stine's
    //assign qm_const = 31'b111_1111_1111_1111_1111_1111_0011_1111;
 
@@ -69,12 +69,13 @@ module fpdiv(final_ans, inputNum, inputDenom, rm,
    assign QP_sum0 = {rega_out[25:0], 5'b0} + qp_const;
    assign QM_sum0 = {rega_out[25:0], 5'b0} + qm_const + 1'b1;
 
-   assign Q_sum  = Q_sum1[30] ? Q_sum1 : Q_sum0; 
+   assign Q_sum  = Q_sum1[30] ? Q_sum1 : Q_sum0; //Stine's
    assign QP_sum = Q_sum1[30] ? QP_sum1 : QP_sum0;
    assign QM_sum = Q_sum1[30] ? QM_sum1 : QM_sum0;
 
    // Pick G
-   assign G = Q_sum1[30] ? Q_sum1[10] : Q_sum0[10];
+   assign G = Q_sum1[30] ? Q_sum1[10] : Q_sum0[10]; //Stine's
+   //assign G = Q_sum1[30] ? Q_sum1[6] : Q_sum0[6];
    // Combinational Logic for rounding (swap sign for Q*D - Q)
    assign mux_final[0] = 1'b0; //setting to 0 for QM right now (not using)
    //assign mux_final[1] = G & ~rrem[53]; //Stine's
