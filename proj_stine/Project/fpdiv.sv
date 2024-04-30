@@ -48,12 +48,17 @@ module fpdiv(final_ans, inputNum, inputDenom, rm,
    flopenr #(54) reg_rem(clk, reset, en_rem, mul_out, regrem_out); 
 
    // Compute remainder
-   assign N_rem = rega_out[26] ? {num, 27'h0} : {1'b0, num, 26'h0};   
+   //assign N_rem = rega_out[26] ? {num, 27'h0} : {1'b0, num, 26'h0};//read quotient msb, why just num?
+   //above is what he originally had for N_rem
+   assign N_rem = {1'b0, num, 26'h0};
    assign rrem = regrem_out - N_rem; //radix point is correct form
 
-   assign q_const  = 31'b000_0000_0000_0000_0000_0000_0010_0000; 
-   assign qp_const = 31'b000_0000_0000_0000_0000_0000_1010_0000;
-   assign qm_const = 31'b111_1111_1111_1111_1111_1111_1001_1111;
+   //assign q_const  = 31'b000_0000_0000_0000_0000_0000_0010_0000; //on Stine's
+   assign q_const  = 31'b000_0000_0000_0000_0000_0000_0100_0000; //Gives only 1 error with rest same
+   // assign qp_const = 31'b000_0000_0000_0000_0000_0000_1010_0000; //on Stine's
+   assign qp_const = 31'b000_0000_0011_0000_0000_0000_0101_0000;
+   assign qm_const = 31'b111_1111_1111_1111_1111_1111_1001_1111; //on Stine's
+   //assign qm_const = 31'b111_1111_1111_1111_1111_1111_0011_1111;
 
    // rega_out = 27 + 4 = 31 bits
    assign Q_sum1  = {rega_out, 4'h0} + q_const;
@@ -71,8 +76,9 @@ module fpdiv(final_ans, inputNum, inputDenom, rm,
    // Pick G
    assign G = Q_sum1[30] ? Q_sum1[10] : Q_sum0[10];
    // Combinational Logic for rounding (swap sign for Q*D - Q)
-   assign mux_final[0] = 1'b0;
-   assign mux_final[1] = G & rrem[53];
+   assign mux_final[0] = 1'b0; //setting to 0 for QM right now (not using)
+   //assign mux_final[1] = G & ~rrem[53]; //Stine's
+   assign mux_final[1] = G & ~rrem[53]; //if rem positive (0 in sign), should do QP
 
    mux3 #(31) Qmux(Q_sum, QM_sum, QP_sum, mux_final, Qmux_out);
    

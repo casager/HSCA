@@ -38,8 +38,8 @@ module stimulus;
 
    initial
      begin
-	handle3 = $fopen("carson.out");
-	$readmemh("carson.tv", testvectors);
+	handle3 = $fopen("f32_div_rne_10.out");
+	$readmemh("f32_div_rne_10.tv", testvectors);
 	//handle3 = $fopen("f32_div_rne_5000.out");
 	//$readmemh("f32_div_rne_5000.tv", testvectors);	
 	vectornum = 0; errors = 0;
