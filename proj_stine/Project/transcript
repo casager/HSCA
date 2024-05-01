@@ -2,8 +2,8 @@
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@mimi.ecen.okstate.edu.
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
-# Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
-# Start time: 01:01:59 on Apr 30,2024
+# Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:50:57 on May 01,2024
 # vlog fpdiv_test.sv flopenr.sv mux.sv tb_fpdiv_test.sv comparator.sv enc32.sv 
 # -- Compiling module fpdiv
 # -- Compiling module flopenr
@@ -25,12 +25,12 @@
 # 	stimulus
 # 	comparator
 # 	enc32
-# End time: 01:01:59 on Apr 30,2024, Elapsed time: 0:00:00
+# End time: 11:50:57 on May 01,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.stimulus 
-# Start time: 01:01:59 on Apr 30,2024
+# Start time: 11:50:57 on May 01,2024
 # ** Note: (vsim-3812) Design is being optimized...
-# //  ModelSim SE-64 2021.3 Jul 13 2021
+# //  ModelSim SE-64 2021.1 Jan 19 2021
 # //
 # //  Copyright 1991-2021 Mentor Graphics Corporation
 # //  All Rights Reserved.
@@ -5061,9 +5061,9 @@
 #       4999 vectors processed
 # Simulation succeeded
 #       5000 tests completed with        179 errors
-# ** Note: $stop    : tb_fpdiv_test.sv(133)
+# ** Note: $stop    : tb_fpdiv_test.sv(135)
 #    Time: 1450020 ns  Iteration: 1  Instance: /stimulus
-# Break in Module stimulus at tb_fpdiv_test.sv line 133
-# Stopped at tb_fpdiv_test.sv line 133
-# End time: 01:02:03 on Apr 30,2024, Elapsed time: 0:00:04
+# Break in Module stimulus at tb_fpdiv_test.sv line 135
+# Stopped at tb_fpdiv_test.sv line 135
+# End time: 11:51:04 on May 01,2024, Elapsed time: 0:00:07
 # Errors: 0, Warnings: 0

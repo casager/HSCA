@@ -1,5 +1,5 @@
 module fpdiv(final_ans, inputNum, inputDenom, rm, 
-	     start, reset, clk, en_a, en_b, en_rem, sel_mux3, sel_mux4, mux_final);
+	     start, reset, clk, en_a, en_b, en_rem, sel_mux3, sel_mux4, mux_final, G, rrem);
 
    input logic [31:0]  inputNum, inputDenom;
    input logic 	       clk, start, reset, en_a, en_b, en_rem, rm; 
@@ -9,7 +9,7 @@ module fpdiv(final_ans, inputNum, inputDenom, rm,
    //output logic [1:0]  op_type;
    output logic [31:0] final_ans;
    
-   logic [63:0]        rrem;   
+   output logic [63:0]        rrem;   
    logic [63:0]        regrem_out;
    logic [31:0]        num, denom; //input and output as 23 bit [22:0], 2 int places and guard bits for 28 total
    logic 	       sign;
@@ -21,7 +21,7 @@ module fpdiv(final_ans, inputNum, inputDenom, rm,
    logic [31:0]        Q_sum1, QP_sum1, QM_sum1,  Q_sum0, QP_sum0, QM_sum0;
    logic [31:0]        Q_sum, QP_sum, QM_sum, Qmux_out;
    logic [22:0]        final_mant;
-   logic G;
+   output logic G;
    output logic [1:0] 	       mux_final;
    logic [63:0]        N_rem;   
    

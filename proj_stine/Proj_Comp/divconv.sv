@@ -53,7 +53,7 @@ module divconv (q1, qm1, qp1, q0, qm0, qp0, rega_out, regb_out, regc_out, regd_o
    mux5 #(64) mx2 (regc_out, n2, ia_out, regb_out, regd_out, sel_muxa, muxa_out);
 
    // Deal with remainder if [0.5, 1) instead of [1, 2)
-   mux2 #(128) mx3a ({~n, {75{1'b1}}}, {{1'b1}, ~n, {74{1'b1}}}, q1[63], constant2);
+   mux2 #(128) mx3a ({~n, {75{1'b1}}}, {{1'b1}, ~n, {74{1'b1}}}, q1[63], constant2); //does one's complement
    // Select Mcand, Remainder/Q''  
    mux2 #(128) mx3 (128'h0, constant2, sel_muxr, constant);
    // Select mcand - remainder should always choose q1 [1,2) because
@@ -94,7 +94,7 @@ module divconv (q1, qm1, qp1, q0, qm0, qp0, rega_out, regb_out, regc_out, regd_o
    flopenr #(64) regd (clk, reset, load_regd, mul_out[126:63], regd_out);
    flopenr #(128) regr (clk, reset, load_regr, mul_out, regr_out);
    // Assuming [1,2)
-   flopenr #(64) rege (clk, reset, load_regs, {q_out1[63:39], (q_out1[38:10] & {29{~P}}), 10'h0}, q1);   
+   flopenr #(64) rege (clk, reset, load_regs, {q_out1[63:39], (q_out1[38:10] & {29{~P}}), 10'h0}, q1); //this all 0s?
    flopenr #(64) regf (clk, reset, load_regs, {qm_out1[63:39], (qm_out1[38:10] & {29{~P}}), 10'h0}, qm1);
    flopenr #(64) regg (clk, reset, load_regs, {qp_out1[63:39], (qp_out1[38:10] & {29{~P}}), 10'h0}, qp1);
    // Assuming [0,1)

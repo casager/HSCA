@@ -9,6 +9,8 @@ module stimulus;
   logic [1:0] sel_mux3;
   logic [1:0] sel_mux4;
   logic [1:0] mux_final;
+  logic [63:0] rrem;
+  logic G;
   
   logic 	 start;
   logic 	 reset;
@@ -28,7 +30,7 @@ module stimulus;
   integer 	 desc3;   
 
   // instantiate device under test
-  fpdiv dut (final_ans, inputNum, inputDenom, rm, start, reset, clk, en_a, en_b, en_rem, sel_mux3, sel_mux4, mux_final);
+  fpdiv dut (final_ans, inputNum, inputDenom, rm, start, reset, clk, en_a, en_b, en_rem, sel_mux3, sel_mux4, mux_final, G, rrem);
 
   // 1 ns clock
   initial 
@@ -124,7 +126,7 @@ module stimulus;
 	     repeat (10)
 	       @(posedge clk);
 	     desc3 = handle3;
-	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b | %b", inputNum, inputDenom, final_ans, Flags, Denorm, yexpected, (final_ans==yexpected), mux_final);
+	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b | %b | %b |%b", inputNum, inputDenom, final_ans, Flags, Denorm, yexpected, (final_ans==yexpected), mux_final, G, rrem[63]);
 	     vectornum = vectornum + 1;
 	     if (final_ans!=yexpected) errors = errors + 1;
 	     if ((testvectors[vectornum] === 104'bx)) begin
