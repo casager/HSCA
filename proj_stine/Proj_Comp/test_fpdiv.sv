@@ -23,13 +23,14 @@ module tb ();
    logic [63:0]  vectornum, errors;    // bookkeeping variables
    logic [103:0] testvectors[50000:0]; // array of testvectors
    logic [7:0] 	 flags_expected;
+   logic [127:0] regr_out;
 
    integer 	handle3;
    integer 	desc3;   
    
    // instantiate device under test
    fpdiv dut (done, AS_Result, Flags, Denorm, {op1, 32'h0}, {op2, 32'h0}, rm, op_type, P, OvEn, UnEn,
-	      start, reset, clk);
+	      start, reset, clk, regr_out);
 
    initial 
      begin	
@@ -70,7 +71,7 @@ module tb ();
 	     start = 1'b0;	
 	     repeat (10)
 	       @(posedge clk);
-	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b", op1, op2, AS_Result, Flags, Denorm, yexpected, (AS_Result[63:32]==yexpected));
+	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b | %b", op1, op2, AS_Result, Flags, Denorm, yexpected, (AS_Result[63:32]==yexpected), regr_out[127]);
 	     vectornum = vectornum + 1;
 	     $display("%d vectors processed", vectornum);		     
 	     if ((testvectors[vectornum] === 104'bx)) begin

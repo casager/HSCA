@@ -113,6 +113,64 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f MIXED_VERSIONS
 R0
 R0
@@ -150,36 +208,36 @@ n@_opt
 OL;O;2021.3_1;73
 R1
 T_opt1
-!s110 1714582258
-V^^hQ^9jKR8=4F^03lNoMT0
+!s110 1714631977
+VX2n`5EA[j=gUjRQP;03:>0
 R2
-=1-287fcf25c015-663272f2-bf-12b8
+=1-2cf05ddf1647-66333529-dc-4384
 R3
 R4
 R5
 n@_opt1
-OL;O;2021.1;73
+OL;O;2021.3;73
 vcomparator
 Z6 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z7 !s110 1714582257
+Z7 !s110 1714631976
 !i10b 1
 !s100 EB8LRNCgQD0bWAC0?ViK02
 IT2KSVIdIU2iok[QQ4m96Q0
 S1
-Z8 dC:/Users/shotc/OneDrive/Documents/HSCA/proj_stine/Project
-Z9 w1713977431
+Z8 dC:/Users/Carson/Documents/HSCA/proj_stine/Project
+Z9 w1714349340
 8comparator.sv
 Fcomparator.sv
 !i122 0
 Z10 L0 1 13
 Z11 VDg1SIo80bB@j0V0VzS_@n1
-Z12 OL;L;2021.1;73
+Z12 OL;L;2021.3;73
 r1
 !s85 0
 31
-Z13 !s108 1714582257.000000
+Z13 !s108 1714631976.000000
 Z14 !s107 enc32.sv|comparator.sv|tb_fpdiv_test.sv|mux.sv|flopenr.sv|fpdiv_test.sv|
-Z15 !s90 fpdiv_test.sv|flopenr.sv|mux.sv|tb_fpdiv_test.sv|comparator.sv|enc32.sv|
+Z15 !s90 -reportprogress|300|fpdiv_test.sv|flopenr.sv|mux.sv|tb_fpdiv_test.sv|comparator.sv|enc32.sv|
 !i113 0
 Z16 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R5
@@ -215,7 +273,7 @@ R7
 I>FaP>YW?UZm0ia]3_eV^M2
 S1
 R8
-Z17 w1713977432
+R9
 8flopenr.sv
 Fflopenr.sv
 !i122 0
@@ -235,15 +293,15 @@ vfpdiv
 R6
 R7
 !i10b 1
-!s100 MJ63clZe;?N3bXcCHJ1b=2
-IRO9KVl^BL2ElhzcIKQ_3N3
+!s100 BM^Bhcm;E59JjTVTiIJn;1
+If0GRH20VcT`E_BdK1DT@n0
 S1
 R8
-w1714582121
+w1714630584
 8fpdiv_test.sv
 Ffpdiv_test.sv
 !i122 0
-L0 1 98
+L0 1 106
 R11
 R12
 r1
@@ -263,9 +321,9 @@ R7
 IP;AONYfVQe92ZcmEdHV<01
 S1
 R8
-R17
-Z18 8mux.sv
-Z19 Fmux.sv
+R9
+Z17 8mux.sv
+Z18 Fmux.sv
 !i122 0
 L0 30 7
 R11
@@ -287,9 +345,9 @@ R7
 I`PHB`CHPl=hUgk8Lejga21
 S1
 R8
+R9
 R17
 R18
-R19
 !i122 0
 L0 38 7
 R11
@@ -311,9 +369,9 @@ R7
 I;WE>L_Q5OSYOU[BQGhXMS1
 S1
 R8
+R9
 R17
 R18
-R19
 !i122 0
 L0 46 7
 R11
@@ -335,9 +393,9 @@ R7
 I@NzHmgB`7[XDF8>M;gTZC0
 S1
 R8
+R9
 R17
 R18
-R19
 !i122 0
 L0 54 7
 R11
@@ -359,9 +417,9 @@ R7
 I[O@;JkBT^LMiLKCZlLgWE3
 S1
 R8
+R9
 R17
 R18
-R19
 !i122 0
 L0 62 7
 R11
@@ -383,9 +441,9 @@ R7
 Ij>=JGc>^_U``h]8JDMOdX1
 S1
 R8
+R9
 R17
 R18
-R19
 !i122 0
 L0 70 8
 R11
@@ -403,11 +461,11 @@ vstimulus
 R6
 R7
 !i10b 1
-!s100 We]6jiGFRW3jF?K;Qe@_h1
-I<YC09Lo;9f3PO:a`8RkF70
+!s100 aH`8`Q0UPM5T6D0_L]SVE1
+IHWmP?AdK6Q[9hD9zOX1VJ0
 S1
 R8
-w1714582197
+w1714631964
 8tb_fpdiv_test.sv
 Ftb_fpdiv_test.sv
 !i122 0

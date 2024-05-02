@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 module fpdiv (done, AS_Result, Flags, Denorm, op1, op2, rm, op_type, P, OvEn, UnEn,
-	      start, reset, clk);
+	      start, reset, clk, regr_out);
 
    input logic  [63:0]  op1;		// 1st input logic operand (A)
    input logic  [63:0]  op2;		// 2nd input logic logic operand (B)
@@ -57,7 +57,7 @@ module fpdiv (done, AS_Result, Flags, Denorm, op1, op2, rm, op_type, P, OvEn, Un
    
    logic [63:0] 	 q1, qm1, qp1, q0, qm0, qp0;
    logic [63:0] 	 rega_out, regb_out, regc_out, regd_out;
-   logic [127:0]   regr_out;
+   output logic [127:0]   regr_out; //SHOULD BE ONLY CHANGE
    logic [2:0] 	 sel_muxa, sel_muxb;
    logic 	       sel_muxr;   
    logic 	       load_rega, load_regb, load_regc, load_regd, load_regr;

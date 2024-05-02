@@ -1,4 +1,4 @@
-# //  ModelSim SE-64 2021.1 Jan 19 2021
+# //  ModelSim SE-64 2021.3 Jul 13 2021
 # //
 # //  Copyright 1991-2021 Mentor Graphics Corporation
 # //  All Rights Reserved.
@@ -11,13 +11,13 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# do divconv.do
+# do fpdiv.do
 # ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@mimi.ecen.okstate.edu.
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
-# Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
-# Start time: 12:35:20 on May 01,2024
-# vlog -reportprogress 300 mult_R4_64_64_cs.v sbtm_a1.sv sbtm_a0.sv sbtm_div.sv sbtm_a4.sv sbtm_a5.sv sbtm_sqrt.sv fsm.sv divconv.sv test_divconvDP.sv 
+# Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
+# Start time: 01:38:58 on May 02,2024
+# vlog -reportprogress 300 mult_R4_64_64_cs.v sbtm_a1.sv sbtm_a0.sv sbtm_div.sv sbtm_a4.sv sbtm_a5.sv sbtm_sqrt.sv fsm.sv divconv.sv convert_inputs.sv exception.sv rounder.sv fpdiv.sv test_fpdiv.sv 
 # -- Compiling module mult64
 # -- Compiling module multiplier
 # -- Compiling module aaoi
@@ -75,6 +75,97 @@
 # -- Compiling module eqcmp
 # -- Compiling module fa
 # -- Compiling module csa
+# -- Compiling module convert_inputs
+# -- Compiling module exception
+# -- Compiling module rounder
+# -- Compiling module rnd_direction
+# ** Warning: rounder.sv(207): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(208): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(209): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(210): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(211): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(212): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(213): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(214): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(216): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(217): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(218): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(219): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(220): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(221): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(222): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(223): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(225): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(226): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(227): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(228): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(229): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(230): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(231): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(232): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(234): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(235): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(236): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(237): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(238): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(239): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(240): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(241): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(243): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(244): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(245): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(246): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(247): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(248): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(249): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(250): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(252): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(253): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(254): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(255): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(256): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(257): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(258): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(259): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(261): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(262): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(263): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(264): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(265): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(266): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(267): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(268): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(270): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(271): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(272): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(273): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(274): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(275): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(276): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(277): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(280): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(281): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(282): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(283): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(284): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(285): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(286): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(287): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(289): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(290): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(291): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(292): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(293): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(294): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(295): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: rounder.sv(296): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# -- Compiling module fpdiv
+# -- Compiling module exp_add
+# -- Compiling module brent_kung
+# -- Compiling module black
+# -- Compiling module grey
+# -- Compiling module rblk
+# -- Compiling module rgry
 # -- Compiling module tb
 # 
 # Top level modules:
@@ -97,18 +188,29 @@
 # 	flopr
 # 	flopenrc
 # 	floprc
-# 	mux3
 # 	mux4
 # 	eqcmp
+# 	rnd_direction
+# 	rblk
+# 	rgry
 # 	tb
-# End time: 12:35:21 on May 01,2024, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
+# End time: 01:38:58 on May 02,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 80
 # vsim -voptargs="+acc" work.tb 
-# Start time: 12:35:21 on May 01,2024
+# Start time: 01:38:58 on May 02,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-143) Recognized 1 FSM in module "fsm(fast)".
 # Loading sv_std.std
 # Loading work.tb(fast)
+# Loading work.fpdiv(fast)
+# Loading work.convert_inputs(fast)
+# Loading work.exception(fast)
+# Loading work.csa(fast)
+# Loading work.fa(fast)
+# Loading work.exp_add(fast)
+# Loading work.brent_kung(fast)
+# Loading work.grey(fast)
+# Loading work.black(fast)
 # Loading work.divconv(fast)
 # Loading work.sbtm_div(fast)
 # Loading work.sbtm_a0(fast)
@@ -136,17 +238,37 @@
 # Loading work.maj(fast)
 # Loading work.min(fast)
 # Loading work.xor3(fast)
-# Loading work.csa(fast)
-# Loading work.fa(fast)
+# Loading work.csa(fast__1)
 # Loading work.mux2(fast__2)
 # Loading work.flopenr(fast)
 # Loading work.flopenr(fast__1)
 # Loading work.fsm(fast)
+# Loading work.rounder(fast)
+# Loading work.mux3(fast)
+# Loading work.flopenr(fast__2)
+# Loading work.flopenr(fast__3)
 # .main_pane.wave.interior.cs.body.pw.wf
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: jstine  Hostname: mimi.ecen.okstate.edu  ProcessID: 55251
-#           Attempting to use alternate WLF file "./wlftsvan06".
+#           Attempting to use alternate WLF file "./wlft7ta11i".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftsvan06
-# End time: 15:08:07 on May 01,2024, Elapsed time: 2:32:46
+#           Using alternate file: ./wlft7ta11i
+#                    1 vectors processed
+#                    2 vectors processed
+#                    3 vectors processed
+#                    4 vectors processed
+#                    5 vectors processed
+#                    6 vectors processed
+#                    7 vectors processed
+#                    8 vectors processed
+#                    9 vectors processed
+#                   10 vectors processed
+#                   11 vectors processed
+#                   12 vectors processed
+#                   13 vectors processed
+# Simulation succeeded
+# ** Note: $stop    : test_fpdiv.sv(79)
+#    Time: 112554 ps  Iteration: 1  Instance: /tb
+# Break in Module tb at test_fpdiv.sv line 79
+# End time: 02:42:00 on May 02,2024, Elapsed time: 1:03:02
 # Errors: 0, Warnings: 2

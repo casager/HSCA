@@ -32,7 +32,8 @@ module divconv (q1, qm1, qp1, q0, qm0, qp0, rega_out, regb_out, regc_out, regd_o
    logic [63:0] 	twocmp_out;
    logic [64:0] 	three;   
    logic [127:0] 	Carry, Carry2;
-   logic [127:0] 	Sum, Sum2;
+   logic [127:0] 	Sum;
+   logic [127:0] Sum2;
    logic [127:0] 	constant, constant2;
    logic [63:0] 	q_const, qp_const, qm_const;
    logic [63:0] 	d2, n2;   

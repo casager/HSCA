@@ -9,7 +9,7 @@ module stimulus;
   logic [1:0] sel_mux3;
   logic [1:0] sel_mux4;
   logic [1:0] mux_final;
-  logic [63:0] rrem;
+  logic [64:0] rrem;
   logic G;
   
   logic 	 start;
@@ -41,8 +41,8 @@ module stimulus;
 
    initial
      begin
-	handle3 = $fopen("f32_div_rne_5000.out");
-	$readmemh("f32_div_rne_5000.tv", testvectors);
+	handle3 = $fopen("f32_div_rne_20.out");
+	$readmemh("f32_div_rne_20.tv", testvectors);
 	//handle3 = $fopen("f32_div_rne_5000.out");
 	//$readmemh("f32_div_rne_5000.tv", testvectors);	
 	vectornum = 0; errors = 0;
@@ -126,7 +126,7 @@ module stimulus;
 	     repeat (10)
 	       @(posedge clk);
 	     desc3 = handle3;
-	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b | %b | %b |%b", inputNum, inputDenom, final_ans, Flags, Denorm, yexpected, (final_ans==yexpected), mux_final, G, rrem[63]);
+	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b | %b | %b |%b", inputNum, inputDenom, final_ans, Flags, Denorm, yexpected, (final_ans==yexpected), mux_final, G, rrem[64]);
 	     vectornum = vectornum + 1;
 	     if (final_ans!=yexpected) errors = errors + 1;
 	     if ((testvectors[vectornum] === 104'bx)) begin

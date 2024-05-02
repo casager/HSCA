@@ -96,7 +96,8 @@ int main(int argc, char* argv[]) {
   /* Remainder */
   scale = pow(2.0, prec_f); //scaling the remaider to be much larger than it is (up 23 bits)
   //REM  = scale*(N1 - RD*D1);
-  REM  = scale*(N*D1 - N1); //flipped what is being subtracted
+  //can change RD to N and vice veras i think
+  REM  = scale*(RD*D1 - N1); //flipped what is being subtracted
   RREM = flr(REM, iprec_f);
   printf("Remainder\n");
   printf("RREM = %1.15lf\n", RREM);

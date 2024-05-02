@@ -25,7 +25,7 @@ module tb ();
    logic [7:0] 	 flags_expected;
 
    integer 	handle3;
-   integer 	desc3;   
+   integer 	desc3;  
    
    // instantiate device under test
    fpdiv dut (done, AS_Result, Flags, Denorm, {op1, 32'h0}, {op2, 32'h0}, rm, op_type, P, OvEn, UnEn,
