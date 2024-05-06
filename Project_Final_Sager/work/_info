@@ -1,0 +1,238 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.3 2021.07, Jul 13 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Carson/Documents/HSCA/Project_Final_Sager
+T_opt
+!s110 1714954015
+VakafBNF7]0_nd3`3F8ZnS1
+04 8 4 work stimulus fast 0
+=1-2cf05ddf1647-66381f1f-1d-7e1c
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.3;73
+vflopenr
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1714954014
+!i10b 1
+!s100 ^2LlUe;9UOTn0J]H[CZ?[0
+I>FaP>YW?UZm0ia]3_eV^M2
+S1
+R0
+Z4 w1714349340
+8flopenr.sv
+Fflopenr.sv
+!i122 0
+L0 28 9
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2021.3;73
+r1
+!s85 0
+31
+Z7 !s108 1714954014.000000
+Z8 !s107 tb_fpdiv.sv|mux.sv|flopenr.sv|fpdiv.sv|
+Z9 !s90 fpdiv.sv|flopenr.sv|mux.sv|tb_fpdiv.sv|
+!i113 0
+Z10 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vfpdiv
+R2
+R3
+!i10b 1
+!s100 de;llTD=V^DD]Xd72iUA93
+IbW7]9gIFEUeS8If55Wlee3
+S1
+R0
+w1714949138
+8fpdiv.sv
+Ffpdiv.sv
+!i122 0
+L0 1 98
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vmux2
+R2
+R3
+!i10b 1
+!s100 W:<17Zf=Y]U7WhCHYnfE30
+IP;AONYfVQe92ZcmEdHV<01
+S1
+R0
+R4
+Z11 8mux.sv
+Z12 Fmux.sv
+!i122 0
+L0 30 7
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vmux3
+R2
+R3
+!i10b 1
+!s100 819e9BNQZ9@9P[n?Bdk_o2
+I`PHB`CHPl=hUgk8Lejga21
+S1
+R0
+R4
+R11
+R12
+!i122 0
+L0 38 7
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vmux4
+R2
+R3
+!i10b 1
+!s100 MeJFX^OozWGhI_=972W9P3
+I;WE>L_Q5OSYOU[BQGhXMS1
+S1
+R0
+R4
+R11
+R12
+!i122 0
+L0 46 7
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vmux5
+R2
+R3
+!i10b 1
+!s100 CjW=<m6Pl0kiYKS5d8[dj3
+I@NzHmgB`7[XDF8>M;gTZC0
+S1
+R0
+R4
+R11
+R12
+!i122 0
+L0 54 7
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vmux6
+R2
+R3
+!i10b 1
+!s100 3LkR^VVamDA<E7hS@jWgE0
+I[O@;JkBT^LMiLKCZlLgWE3
+S1
+R0
+R4
+R11
+R12
+!i122 0
+L0 62 7
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vmux7
+R2
+R3
+!i10b 1
+!s100 U>I2a<[kzn]F<Rl:_:EG^2
+Ij>=JGc>^_U``h]8JDMOdX1
+S1
+R0
+R4
+R11
+R12
+!i122 0
+L0 70 8
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vstimulus
+R2
+R3
+!i10b 1
+!s100 GQe`Y_9nfh0>1=Rm4cHmL0
+IV6dchz1EO>WlDV6`3O2cP1
+S1
+R0
+w1714954011
+8tb_fpdiv.sv
+Ftb_fpdiv.sv
+!i122 0
+L0 2 145
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1

@@ -7,9 +7,9 @@ module stimulus;
   //logic [1:0]	 op_type; //should be Q2bit output	
   logic en_a, en_b, en_rem;
   logic [1:0] sel_mux3;
-  logic [1:0] sel_mux4;
+  logic [2:0] sel_mux5;
   logic [1:0] mux_final;
-  logic [64:0] rrem;
+  logic [63:0] rrem_out;
   logic G;
   
   logic 	 start;
@@ -30,7 +30,7 @@ module stimulus;
   integer 	 desc3;   
 
   // instantiate device under test
-  fpdiv dut (final_ans, inputNum, inputDenom, rm, start, reset, clk, en_a, en_b, en_rem, sel_mux3, sel_mux4, mux_final, G, rrem);
+  fpdiv dut (final_ans, inputNum, inputDenom, rm, start, reset, clk, en_a, en_b, en_rem, sel_mux3, sel_mux5, mux_final, G, rrem_out);
 
   // 1 ns clock
   initial 
@@ -41,8 +41,8 @@ module stimulus;
 
    initial
      begin
-	handle3 = $fopen("f32_div_rne_20.out");
-	$readmemh("f32_div_rne_20.tv", testvectors);
+	handle3 = $fopen("f32_div_rz.out");
+	$readmemh("f32_div_rz.tv", testvectors);
 	//handle3 = $fopen("f32_div_rne_5000.out");
 	//$readmemh("f32_div_rne_5000.tv", testvectors);	
 	vectornum = 0; errors = 0;
@@ -62,62 +62,67 @@ module stimulus;
 	       @(posedge clk);
 	     // deassert start after 2 cycles
              //start
-             #0  rm = 1'b1;
-             #5 sel_mux4 = 2'b00; //iteration 1
+             #0  rm = 1'b0; //need to change based on rounding mode
+             #5 sel_mux5 = 3'b000; //iteration 1
              #0 sel_mux3 = 2'b00; //multiply input numerator by IA
              #0 en_a = 1'b1;
              #0 en_b = 1'b0;
              #0 en_rem = 1'b0;
 
              //input denom
-             #10 sel_mux4 = 2'b01; //multiply input denom by IA
+             #10 sel_mux5 = 3'b001; //multiply input denom by IA
              #0 en_a = 1'b0;
              #0 en_b = 1'b1;     
 
              //cycle through these
-             #10 sel_mux4 = 2'b10; //iteration 2
+             #10 sel_mux5 = 3'b010; //iteration 2
              #0 sel_mux3 = 2'b01; //now multilpy numbers by what is in C register (nothing there yet)
              #0 en_a = 1'b1;
              #0 en_b = 1'b0; 
 
-             #10 sel_mux4 = 2'b11;
+             #10 sel_mux5 = 3'b011;
              #0 en_a = 1'b0;
              #0 en_b = 1'b1; 
 
-             #10 sel_mux4 = 2'b10; //iteration 3
+             #10 sel_mux5 = 3'b010; //iteration 3
              #0 en_a = 1'b1;
              #0 en_b = 1'b0; 
 
-             #10 sel_mux4 = 2'b11;
+             #10 sel_mux5 = 3'b011;
              #0 en_a = 1'b0;
              #0 en_b = 1'b1; 
 
-             #10 sel_mux4 = 2'b10; //iteration 4
+             #10 sel_mux5 = 3'b010; //iteration 4
              #0 en_a = 1'b1;
              #0 en_b = 1'b0; 
 
-             #10 sel_mux4 = 2'b11;
+             #10 sel_mux5 = 3'b011;
              #0 en_a = 1'b0;
              #0 en_b = 1'b1; 
 
-             #10 sel_mux4 = 2'b10; //iteration 5
+             #10 sel_mux5 = 3'b010; //iteration 5
              #0 en_a = 1'b1;
              #0 en_b = 1'b0; 
 
-             #10 sel_mux4 = 2'b11;
+             #10 sel_mux5 = 3'b011;
              #0 en_a = 1'b0;
              #0 en_b = 1'b1; 
 
-             #10 sel_mux4 = 2'b10; //iteration 6
+             #10 sel_mux5 = 3'b010; //iteration 6
              #0 en_a = 1'b1;
              #0 en_b = 1'b0; 
 
-             #10 sel_mux4 = 2'b11;
+             #10 sel_mux5 = 3'b011;
              #0 en_a = 1'b0;
              #0 en_b = 1'b1;
 
-             #10 sel_mux4 = 2'b10;
+             #10 sel_mux5 = 3'b010; //multiplies q * D
              #0 sel_mux3 = 2'b10;
+             #0 en_a = 1'b0;
+             #0 en_b = 1'b0;
+             #0 en_rem = 1'b1;
+
+             #10 sel_mux5 = 3'b100; //multiplies mcand_q * denom for remainder
              #0 en_a = 1'b0;
              #0 en_b = 1'b0;
              #0 en_rem = 1'b1;
@@ -126,7 +131,7 @@ module stimulus;
 	     repeat (10)
 	       @(posedge clk);
 	     desc3 = handle3;
-	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b | %b | %b |%b", inputNum, inputDenom, final_ans, Flags, Denorm, yexpected, (final_ans==yexpected), mux_final, G, rrem[64]);
+	     $fdisplay(desc3, "%h_%h_%h_%b_%b | %h_%b | %b | %b | %b", inputNum, inputDenom, final_ans, Flags, Denorm, yexpected, (final_ans==yexpected), mux_final, G, rrem_out[63]);
 	     vectornum = vectornum + 1;
 	     if (final_ans!=yexpected) errors = errors + 1;
 	     if ((testvectors[vectornum] === 104'bx)) begin
