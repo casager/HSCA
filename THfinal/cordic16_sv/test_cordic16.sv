@@ -20,13 +20,14 @@ module stimulus;
    logic         clock;
    logic 	       Clk;   
    logic [15:0] sin, cos;
-   logic [15:0] data, currentangle;   
+   logic [15:0] data, currentangle;
+   logic modeSel;
    
    integer     handle3;
    integer     desc3;   
    
    cordic16 dut (sin, cos, data, currentangle,
-		 endangle, addr, load, clock);
+		 endangle, addr, load, clock, modeSel);
    
    initial 
      begin	
@@ -43,16 +44,21 @@ module stimulus;
    always 
      begin
 	desc3 = handle3;
-	#5 $fdisplay(desc3, "%b %h %d || %h %b %b || %b %b %h %h", 
-		     endangle, endangle, endangle, addr, clock, load, sin, cos, data, currentangle);
+	#5 $fdisplay(desc3, "%b %h %d || %h %b %b || %b %h %d || %b %h %d || %h %h", 
+		     endangle, endangle, endangle, addr, clock, load, sin, sin, sin, cos, cos, cos, data, currentangle);
      end
 
    initial
      begin
 	#0  clock = 1'b0;	
 	#0  addr = 4'b0000;	
-	#0  endangle = 16'h2500;
+	// #0  endangle = 16'h2500; //ex: angle = 0.578125 
+	// #0  endangle = 16'h2a72; //angle = 38 deg = 0.663225
+	// #0  endangle = 16'h4541; //angle = 62 deg =1.0821
+	#0  endangle = 16'h54e5; //angle = 76 deg =1.32645
+	// #0  endangle = 16'h0000;
 	// #0 endangle = 16'h2a72;
+	#0 modeSel = 1'b0;
 	#0  load = 1'b1;
 	#20 clock = 1'b1;
 	#20 clock = 1'b0;

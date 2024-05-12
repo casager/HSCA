@@ -1,6 +1,6 @@
 # do cordic16_sv.do
 # Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
-# Start time: 00:10:45 on May 10,2024
+# Start time: 16:54:48 on May 12,2024
 # vlog mux.sv flop.sv sincos.sv angle.sv 
 # -- Compiling module mux2
 # -- Compiling module mux3
@@ -20,10 +20,10 @@
 # 	mux7
 # 	sincos
 # 	angle
-# End time: 00:10:45 on May 10,2024, Elapsed time: 0:00:00
+# End time: 16:54:48 on May 12,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
-# Start time: 00:10:45 on May 10,2024
+# Start time: 16:54:48 on May 12,2024
 # vlog logshift1.sv logshift2.sv logshift4.sv logshift8.sv shall.sv 
 # -- Compiling module logshift1
 # -- Compiling module logshift2
@@ -33,29 +33,29 @@
 # 
 # Top level modules:
 # 	shall
-# End time: 00:10:45 on May 10,2024, Elapsed time: 0:00:00
+# End time: 16:54:48 on May 12,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
-# Start time: 00:10:45 on May 10,2024
+# Start time: 16:54:48 on May 12,2024
 # vlog rom_cordic.sv 
 # -- Compiling module rom
 # 
 # Top level modules:
 # 	rom
-# End time: 00:10:45 on May 10,2024, Elapsed time: 0:00:00
+# End time: 16:54:48 on May 12,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim SE-64 vlog 2021.3 Compiler 2021.07 Jul 13 2021
-# Start time: 00:10:45 on May 10,2024
+# Start time: 16:54:48 on May 12,2024
 # vlog cordic16.sv test_cordic16.sv 
 # -- Compiling module cordic16
 # -- Compiling module stimulus
 # 
 # Top level modules:
 # 	stimulus
-# End time: 00:10:45 on May 10,2024, Elapsed time: 0:00:00
+# End time: 16:54:48 on May 12,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.stimulus 
-# Start time: 00:10:45 on May 10,2024
+# Start time: 16:54:48 on May 12,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 2021.3 Jul 13 2021
 # //
@@ -73,11 +73,11 @@
 # Loading sv_std.std
 # Loading work.stimulus(fast)
 # Loading work.cordic16(fast)
-# Loading work.angle(fast)
 # Loading work.mux2(fast)
+# Loading work.angle(fast)
+# Loading work.mux2(fast__1)
 # Loading work.flop(fast)
 # Loading work.sincos(fast)
-# Loading work.mux2(fast__1)
 # Loading work.shall(fast)
 # Loading work.logshift1(fast)
 # Loading work.logshift2(fast)
@@ -93,5 +93,3 @@
 # configure wave not supported in batch mode
 # configure wave not supported in batch mode
 # configure wave not supported in batch mode
-# End time: 00:10:49 on May 10,2024, Elapsed time: 0:00:04
-# Errors: 0, Warnings: 0

@@ -11,10 +11,10 @@ z2
 cModel Technology
 Z0 dC:/Users/Carson/Documents/HSCA/THfinal/cordic16_sv
 T_opt
-!s110 1715317846
-VaTjVan4giSYS`Wf;bN9_<2
+!s110 1715550889
+V6cZhLEXdJd[MB@3b^ZMKO1
 04 8 4 work stimulus fast 0
-=1-2cf05ddf1647-663dac56-57-7f64
+=1-2cf05ddf1647-66413aa8-365-3fdc
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
@@ -22,51 +22,51 @@ n@_opt
 OL;O;2021.3;73
 vangle
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1715317845
+Z3 !s110 1715550888
 !i10b 1
-!s100 F>g8LJL9;OzC@c67W4mHc1
-Izz26kZ=HLnei4;AAMTN4k0
+!s100 ZjdZEQ[bAgPhP0Ili6^c91
+IY<8E_5oL7l>R_Z38SMBef0
 S1
 R0
-w1715296880
+w1715544687
 8angle.sv
 Fangle.sv
 !i122 0
-Z4 L0 1 25
-Z5 VDg1SIo80bB@j0V0VzS_@n1
-Z6 OL;L;2021.3;73
+L0 1 29
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2021.3;73
 r1
 !s85 0
 31
-Z7 !s108 1715317845.000000
-Z8 !s107 angle.sv|sincos.sv|flop.sv|mux.sv|
-Z9 !s90 mux.sv|flop.sv|sincos.sv|angle.sv|
+Z6 !s108 1715550888.000000
+Z7 !s107 angle.sv|sincos.sv|flop.sv|mux.sv|
+Z8 !s90 mux.sv|flop.sv|sincos.sv|angle.sv|
 !i113 0
-Z10 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
 vcordic16
 R2
 R3
 !i10b 1
-!s100 ZFXP`dQIe?3AOYO2D8YD]1
-ID52:BVon?P<kd08n[>MW61
+!s100 QQI47^RzoP^7h]`@JW[T[3
+IOcglmODXe3WbW[8R=1b>f3
 S1
 R0
-w1715317610
+w1715376237
 8cordic16.sv
 Fcordic16.sv
 !i122 3
-L0 1 15
+L0 1 19
+R4
 R5
-R6
 r1
 !s85 0
 31
-R7
-Z11 !s107 test_cordic16.sv|cordic16.sv|
-Z12 !s90 cordic16.sv|test_cordic16.sv|
+R6
+Z10 !s107 test_cordic16.sv|cordic16.sv|
+Z11 !s90 cordic16.sv|test_cordic16.sv|
 !i113 0
-R10
+R9
 R1
 vflop
 R2
@@ -81,16 +81,16 @@ w1715293655
 Fflop.sv
 !i122 0
 L0 28 8
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vlogshift1
 R2
@@ -100,21 +100,21 @@ R3
 Im3olbG^BV1iO=M=6J4W:`0
 S1
 R0
-Z13 w1715295212
+Z12 w1715295212
 8logshift1.sv
 Flogshift1.sv
 !i122 1
 L0 1 24
+R4
 R5
-R6
 r1
 !s85 0
 31
-R7
-Z14 !s107 shall.sv|logshift8.sv|logshift4.sv|logshift2.sv|logshift1.sv|
-Z15 !s90 logshift1.sv|logshift2.sv|logshift4.sv|logshift8.sv|shall.sv|
+R6
+Z13 !s107 shall.sv|logshift8.sv|logshift4.sv|logshift2.sv|logshift1.sv|
+Z14 !s90 logshift1.sv|logshift2.sv|logshift4.sv|logshift8.sv|shall.sv|
 !i113 0
-R10
+R9
 R1
 vlogshift2
 R2
@@ -124,21 +124,21 @@ R3
 IWWR799G7J?ZlWPz3_;e:R0
 S1
 R0
-R13
+R12
 8logshift2.sv
 Flogshift2.sv
 !i122 1
+Z15 L0 1 25
 R4
 R5
-R6
 r1
 !s85 0
 31
-R7
+R6
+R13
 R14
-R15
 !i113 0
-R10
+R9
 R1
 vlogshift4
 R2
@@ -152,17 +152,17 @@ w1715295213
 8logshift4.sv
 Flogshift4.sv
 !i122 1
+R15
 R4
 R5
-R6
 r1
 !s85 0
 31
-R7
+R6
+R13
 R14
-R15
 !i113 0
-R10
+R9
 R1
 vlogshift8
 R2
@@ -176,17 +176,17 @@ w1715295214
 8logshift8.sv
 Flogshift8.sv
 !i122 1
+R15
 R4
 R5
-R6
 r1
 !s85 0
 31
-R7
+R6
+R13
 R14
-R15
 !i113 0
-R10
+R9
 R1
 vmux2
 R2
@@ -201,16 +201,16 @@ Z17 8mux.sv
 Z18 Fmux.sv
 !i122 0
 L0 30 7
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vmux3
 R2
@@ -225,16 +225,16 @@ R17
 R18
 !i122 0
 L0 38 7
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vmux4
 R2
@@ -249,16 +249,16 @@ R17
 R18
 !i122 0
 L0 46 7
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vmux5
 R2
@@ -273,16 +273,16 @@ R17
 R18
 !i122 0
 L0 54 7
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vmux6
 R2
@@ -297,16 +297,16 @@ R17
 R18
 !i122 0
 L0 62 7
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vmux7
 R2
@@ -321,16 +321,16 @@ R17
 R18
 !i122 0
 L0 70 8
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vrom
 R2
@@ -345,16 +345,16 @@ w1715317817
 From_cordic.sv
 !i122 2
 L0 1 16
+R4
 R5
-R6
 r1
 !s85 0
 31
-R7
+R6
 !s107 rom_cordic.sv|
 !s90 rom_cordic.sv|
 !i113 0
-R10
+R9
 R1
 vshall
 R2
@@ -369,62 +369,62 @@ w1715293583
 Fshall.sv
 !i122 1
 L0 1 14
+R4
 R5
-R6
 r1
 !s85 0
 31
-R7
+R6
+R13
 R14
-R15
 !i113 0
-R10
+R9
 R1
 vsincos
 R2
 R3
 !i10b 1
-!s100 cjc<<z=`n5AMZ@k?]1f]02
-I@7=0d^R8PoeI8<=m@^ED81
+!s100 ::TkhGObQ:IMjlIXA:cPO0
+Ij^[:Zm4@zSg1gQ_88f2YK3
 S1
 R0
-w1715317838
+w1715546129
 8sincos.sv
 Fsincos.sv
 !i122 0
-L0 1 41
+L0 1 47
+R4
 R5
-R6
 r1
 !s85 0
 31
+R6
 R7
 R8
-R9
 !i113 0
-R10
+R9
 R1
 vstimulus
 R2
 R3
 !i10b 1
-!s100 D3K0iU4iS5UDWBz_0i<=l2
-IU74>GbaV4oFHM@2=GnMoV2
+!s100 =NkzIffz0NmmSeQJg[Dk^2
+INTWH3g@m0?@G44JWYz6J43
 S1
 R0
-w1715294909
+w1715550604
 8test_cordic16.sv
 Ftest_cordic16.sv
 !i122 3
-L0 15 126
+L0 15 132
+R4
 R5
-R6
 r1
 !s85 0
 31
-R7
-R11
-R12
-!i113 0
+R6
 R10
+R11
+!i113 0
+R9
 R1

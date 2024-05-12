@@ -15,7 +15,7 @@
 # Either bring up ModelSim and type the following at the "ModelSim>" prompt:
 #     do run.do
 # or, to run from a shell, type the following at the shell prompt:
-#     vsim -do cordic_sv.do -c
+#     vsim -do cordic16_sv.do -c
 # (omit the "-c" to see the GUI while running from the shell)
 
 onbreak {resume}
